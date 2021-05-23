@@ -1,9 +1,5 @@
 <script>
-  import Flight from './Flight.svelte'
-  import FlightList from './FlightList.svelte'
-  import Search from './Search.svelte'
-  import { Router, Link, Route } from 'svelte-routing'
-  import { Home } from '../routes'
+  import { Link } from 'svelte-routing'
 </script>
 
 <nav class="w-full md:h-12 sm:h-24 m-auto bg-dark-gray text-pale-white fixed">

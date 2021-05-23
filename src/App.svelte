@@ -1,9 +1,7 @@
 <script>
-  import { Nav, FlightList, Flight, Search } from './components'
-  import { Router, Link, Route } from 'svelte-routing'
-  import { Home, Tours } from './routes'
-
-  import { testFlights } from './utils/data'
+  import { Nav } from './components'
+  import { Router, Route } from 'svelte-routing'
+  import { Home, Tours, Tickets } from './routes'
 
   // api.getToken().then((data) => console.log(data));
 
@@ -14,24 +12,15 @@
   export let url = ''
 </script>
 
-<!-- <Nav /> -->
-
-<!-- <Search /> 
-<FlightList />  -->
-
 <Router {url}>
-  <!-- <nav class="font-bold mt-20"> 
-    <Link to="/">Home</Link>
-    <Link to="tours">Tours</Link>
-  </nav> -->
   <Nav />
   <div id="check" class="pt-10">
     <!-- <Route path="tours"><Tours /></Route>
     <Route path="/"><Home /></Route> -->
     <Route path="tickets">
-      <Search />
-      <Flight flight={testFlights[0]} />
+      <Tickets />
     </Route>
+    <Route path="tours"><Tours /></Route>
     <Route path="/"><Home /></Route>
   </div>
 </Router>
