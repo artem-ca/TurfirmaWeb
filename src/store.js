@@ -13,4 +13,4 @@ expiration.subscribe((value) => localStorage.setItem('expiration', value))
 // export const access_token = writable(null);
 // export const expiration = writable(null);
 export const flights = writable([]);
-export const dictionaries = writable({});
+export const dictionaries = writable({currencies: [], locations: []});

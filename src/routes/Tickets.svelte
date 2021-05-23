@@ -4,5 +4,7 @@
   import { testFlights } from '../utils/data'
 </script>
 
-<Search />
-<Flight flight={testFlights[0]} />
+<div class="pt-12">
+  <Search />
+  <Flight flight={testFlights[0]} />
+</div>

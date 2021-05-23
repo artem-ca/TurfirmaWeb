@@ -14,7 +14,7 @@
 
 <Router {url}>
   <Nav />
-  <div id="check" class="pt-10">
+  <div id="check">
     <!-- <Route path="tours"><Tours /></Route>
     <Route path="/"><Home /></Route> -->
     <Route path="tickets">
