@@ -65,10 +65,12 @@
   const origins = ['PAR', 'MAD']
   const destinations = ['PAR', 'MAD']
   const passengers = [1, 2, 3, 4, 5, 6]
+  const nights = [1, 2, 4, 6, 8, 10]
 
   let selectedOrigin = ''
   let selectedDest = ''
   let selectedPassenger = passengers[0]
+  let selectedNights = nights[0]
   let price = 0
 
   // ****** Dates Selection ***********
@@ -94,10 +96,9 @@
   let arrivalChosen = false
 </script>
 
-<!-- TODO: Добавить спейсер между полями/подобрать правильный размер полей -->
 <div class="w-full md:h-20 sm:h-82 m-auto pt-1.5 bg-dark-gray text-dark-gray">
   <div class="md:max-w-screen-xl md:flex m-auto pt-1">
-    <div class="md:flex md:w-full mx-5">
+    <div class="md:flex md:w-full mx-5 ">
       <div
         class="md:flex-shrink-0 md:flex md:w-full md:space-x-2 md:space-y-0 sm:space-y-2 "
       >
@@ -125,24 +126,18 @@
               </button>
             </DatePicker>
           </div>
-
-          <div>
-            <DatePicker
-              start={departureDate}
-              style="z-index: 50"
-              bind:selected={arrivalDate}
-              bind:dateChosen={arrivalChosen}
-            >
-              <button class="bg-white md:w-56 sm:w-64 xs:w-34 h-14  rounded-lg">
-                {#if arrivalChosen}
-                  {formatDate(arrivalDate)}
-                {:else}
-                  {formatDate(departureDate)}
-                {/if}
-              </button>
-            </DatePicker>
-          </div>
         </div>
+
+        <select
+          class="text-main-input w-full h-14 p-3.5 rounded-lg cursor-pointer"
+          bind:value={selectedNights}
+        >
+          {#each nights as night}
+            <option>
+              {night}
+            </option>
+          {/each}
+        </select>
 
         <select
           class="text-main-input w-full h-14 p-3.5 rounded-lg cursor-pointer"
@@ -162,9 +157,9 @@
 
         <button
           class="bg-red-600 hover:bg-red-500 active:bg-red-400 
-                      focus:outline-none 
-                      w-full h-14 rounded-lg cursor-pointer 
-                      text-main-input font-bold"
+                        focus:outline-none 
+                        w-full h-14 rounded-lg cursor-pointer 
+                        text-main-input font-bold"
         >
           Найти
         </button>

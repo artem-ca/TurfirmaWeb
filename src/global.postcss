@@ -10,3 +10,32 @@ body {
   font-size: 16px;
   background-color: #fafafa;
 }
+
+.bling {
+  overflow: hidden;
+}
+
+.bling:hover,
+.bling:focus {
+  filter: brightness(1.2);
+  outline: none;
+}
+
+.bling:before,
+.bling:after {
+  content: '';
+  box-shadow: 0 0 30px 5px rgba(254, 254, 254);
+  position: absolute;
+  top: 0;
+  right: -200px;
+  width: 1em;
+  height: 100%;
+  background-color: rgba(#fafafa, 0.6);
+  filter: blur(10px);
+  transform: skewX(-45deg);
+  transition: 0.5s;
+}
+.bling:hover:before,
+.bling:focus::before {
+  right: calc(100% + 150px);
+}

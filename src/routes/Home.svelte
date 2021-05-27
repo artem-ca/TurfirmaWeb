@@ -5,6 +5,4 @@
 <div
   class="bg-local bg-cover h-screen pt-11"
   style="background-image: url('{background}')"
->
-  Hello
-</div>
+/>

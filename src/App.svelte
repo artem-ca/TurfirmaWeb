@@ -1,7 +1,7 @@
 <script>
-  import { Nav } from './components'
+  import { Nav, TestNav, TourSearch, TourCard } from './components'
+  import { Home, Tours, Tickets, Faq, SignIn, SignUp, Profile } from './routes'
   import { Router, Route } from 'svelte-routing'
-  import { Home, Tours, Tickets } from './routes'
 
   // api.getToken().then((data) => console.log(data));
 
@@ -15,12 +15,12 @@
 <Router {url}>
   <Nav />
   <div id="check">
-    <!-- <Route path="tours"><Tours /></Route>
-    <Route path="/"><Home /></Route> -->
-    <Route path="tickets">
-      <Tickets />
-    </Route>
-    <Route path="tours"><Tours /></Route>
     <Route path="/"><Home /></Route>
+    <Route path="tours"><Tours /></Route>
+    <Route path="tickets"><Tickets /></Route>
+    <Route path="faq"><Faq /></Route>
+    <Route path="signin"><SignIn /></Route>
+    <Route path="signup"><SignUp /></Route>
+    <Route path="profile"><Profile /></Route>
   </div>
 </Router>
