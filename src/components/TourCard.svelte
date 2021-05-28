@@ -18,13 +18,18 @@
   />
 
   <div class="w-92.5 h-55 bg-dark-gray ml-auto mt-auto rounded-2xl">
-    <div class="ml-40 mt-5 absolute text-base">
-      <div class="">
-        <div>Неизведанная Ирландия</div>
-        <div>Ирландия, Лимерик</div>
+    <div class="pl-40 pt-2 absolute text-base">
+      <div class="-space-y-0.5">
+        <span class="font-semibold">Невероятная Ирландия</span>
+        <div>The Merrion Hotel, 5</div>
+        <div class="text-sm">
+          <spna>Ирландия, </spna>
+          <span class="font-thin">Дублин</span>
+        </div>
+        <div class="text-xs text-blue-200">с визой</div>
       </div>
 
-      <div class="mt-8 flex flex-row space-x-1.5">
+      <div class="mt-5 flex flex-row space-x-1.5">
         <svg
           width="20"
           height="20"
@@ -88,13 +93,30 @@
         <div class="pl-2">5.0</div>
       </div>
 
-      <div class="mt-7 flex flex-row">
-        <div>
-          <div>Дней</div>
+      <div class="mt-6 flex flex-row space-x-5 items-center">
+        <div class="">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+            />
+          </svg>
+          <span class="ml-2">1</span>
+        </div>
+        <div class="">
+          <div>Ночей</div>
           <div>7</div>
         </div>
-        <div class="ml-16">
-          <div>Цена</div>
+        <div class="">
+          <div>Цена от</div>
           <div>₽ 70 000</div>
         </div>
       </div>

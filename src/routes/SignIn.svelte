@@ -24,8 +24,10 @@
             <span class="text-lg text-pale-white font-bold"
               >Вход в учетную запись</span
             >
-            <h2 class="mt-8 mb-12 text-5xl font-bold font-heading text-white">
-              Авторизируясь, Вы существенно расширяете спектр возможнотстей
+            <h2
+              class="mt-8 mb-12 md:text-5xl xs:text-3xl font-bold font-heading text-white"
+            >
+              Авторизируясь, Вы существенно расширяете спектр возможностей
               нашего сервиса
             </h2>
             <p class="text-lg text-gray-200">
@@ -61,7 +63,7 @@
                 <input
                   class="w-full pr-6 pl-4 py-4 font-bold placeholder-gray-400 placeholder-opacity-75 rounded-r-full focus:outline-none"
                   type="email"
-                  placeholder="example@shuffle.dev"
+                  placeholder="best_user@example.tru"
                 />
               </div>
               <div class="flex items-center pl-6 mb-3 bg-white rounded-2xl">
@@ -84,7 +86,7 @@
                 <input
                   class="w-full pr-6 pl-4 py-4 font-bold placeholder-gray-400 placeholder-opacity-75 rounded-r-full focus:outline-none"
                   type="password"
-                  placeholder="Password"
+                  placeholder="Пароль"
                 />
               </div>
 

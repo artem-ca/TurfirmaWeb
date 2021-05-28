@@ -19,11 +19,13 @@
     <div class="max-w-5xl mx-auto">
       <div class="flex flex-wrap items-center -mx-4">
         <div class="w-full lg:w-1/2 px-4 mb-16 lg:mb-0">
-          <div class="max-w-md">
+          <div class="lg:max-w-md md:w-full">
             <span class="text-lg text-pale-white font-bold"
               >Регистрация учетной записи</span
             >
-            <h2 class="mt-8 mb-12 text-5xl font-bold font-heading text-white">
+            <h2
+              class="mt-8 mb-12 md:text-5xl xs:text-2xl font-bold font-heading text-white"
+            >
               Начните пользоваться дополнительными функциями сервиса
             </h2>
             <p class="text-lg text-gray-200">
@@ -59,7 +61,7 @@
                 <input
                   class="w-full pr-6 pl-4 py-4 font-bold placeholder-gray-400 placeholder-opacity-75 rounded-r-full focus:outline-none"
                   type="email"
-                  placeholder="example@shuffle.dev"
+                  placeholder="best_user@example.tru"
                 />
               </div>
               <div class="flex items-center pl-6 mb-3 bg-white rounded-2xl">
@@ -82,7 +84,7 @@
                 <input
                   class="w-full pr-6 pl-4 py-4 font-bold placeholder-gray-400 placeholder-opacity-75 rounded-r-full focus:outline-none"
                   type="password"
-                  placeholder="Password"
+                  placeholder="Пароль"
                 />
               </div>
               <div class="flex items-center pl-6 mb-6 bg-white rounded-2xl">
@@ -105,7 +107,7 @@
                 <input
                   class="w-full pr-6 pl-4 py-4 font-bold placeholder-gray-400 placeholder-opacity-75 rounded-r-full focus:outline-none"
                   type="password"
-                  placeholder="Repeat password"
+                  placeholder="Повторите пароль"
                 />
               </div>
               <div class="inline-flex mb-10">

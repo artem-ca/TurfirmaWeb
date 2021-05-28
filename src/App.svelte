@@ -1,5 +1,12 @@
 <script>
-  import { Nav, TestNav, TourSearch, TourCard } from './components'
+  import {
+    Nav,
+    TestNav,
+    TourSearch,
+    TourCard,
+    HomeTourCard,
+    ToursLine,
+  } from './components'
   import { Home, Tours, Tickets, Faq, SignIn, SignUp, Profile } from './routes'
   import { Router, Route } from 'svelte-routing'
 
@@ -18,6 +25,7 @@
     <Route path="/"><Home /></Route>
     <Route path="tours"><Tours /></Route>
     <Route path="tickets"><Tickets /></Route>
+    <Route path="test"><TestNav /></Route>
     <Route path="faq"><Faq /></Route>
     <Route path="signin"><SignIn /></Route>
     <Route path="signup"><SignUp /></Route>

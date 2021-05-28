@@ -29,17 +29,21 @@
     </div>
 
     <div class="w-1/4 flex items-center justify-end mr-5 my-1.5 space-x-3">
+      <Link to="test">
+        <button class="w-10">test</button>
+      </Link>
+
       <Link to="faq">
         <button class="w-10">FAQ</button>
       </Link>
 
       <Link to="signin">
-        <button class="w-16 hover:opacity-80 ">Вход</button>
+        <button class="w-16 hover:opacity-80 border rounded-md">Вход</button>
       </Link>
 
       <Link to="signup">
         <button
-          class="w-28 border rounded-md hover:bg-pale-white hover:text-dark-gray"
+          class="w-28 text-dark-gray bg-pale-white hover:opacity-90 border rounded-md "
           >Регистрация</button
         >
       </Link>

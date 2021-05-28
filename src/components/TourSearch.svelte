@@ -97,7 +97,7 @@
 </script>
 
 <div class="w-full md:h-20 sm:h-82 m-auto pt-1.5 bg-dark-gray text-dark-gray">
-  <div class="md:max-w-screen-xl md:flex m-auto pt-1">
+  <div class="md:max-w-screen-xl md:flex m-auto pt-1 ">
     <div class="md:flex md:w-full mx-5 ">
       <div
         class="md:flex-shrink-0 md:flex md:w-full md:space-x-2 md:space-y-0 sm:space-y-2 "
@@ -159,7 +159,7 @@
           class="bg-red-600 hover:bg-red-500 active:bg-red-400 
                         focus:outline-none 
                         w-full h-14 rounded-lg cursor-pointer 
-                        text-main-input font-bold"
+                        text-main-input font-bold relative bling"
         >
           Найти
         </button>
