@@ -6,12 +6,12 @@
   class="flex flex-row  w-75 h-47.5 m-auto cursor-pointer bg-transparent relative"
 >
   <div
-    class="w-75 h-47.5 bg-strange-gray rounded-4xl 
-  transition duration-300 delay-5 ease-in-out 
-  transform hover:-translate-y-2 bling shadow-2xl "
+    class="w-75 h-47.5 bg-strange-gray rounded-4xl
+          transition duration-500 delay-5 ease-in-out 
+          transform hover:-translate-y-2 shadow-2xl"
   >
     <div
-      class="w-70 h-44 mx-auto mt-3.5 rounded-4xl bg-local bg-cover shadow-inner-2"
+      class="w-70 h-44 mx-auto mt-2 rounded-4xl bg-local bg-cover shadow-inner-2 "
       style="background-image: url('{img}')"
     >
       <div class="w-34 ml-5 mt-25 text-pale-white absolute flex flex-row">

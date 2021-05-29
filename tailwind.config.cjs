@@ -18,9 +18,8 @@ module.exports = {
   },
   theme: {
     screens: {
-      'xs': '350px',
+      'xs': '320px',
       'sm': '640px',
-
       'md': '768px',
       'lg': '1024px',
       'xl': '1280px',
@@ -36,6 +35,7 @@ module.exports = {
       '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
       inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
       'inner-2': 'inset 15px -45px 25px rgba(0, 0, 0, 0.3), 1px 1px 5px rgba(0, 0, 0, 0.3)',
+      'inner-3': 'inset 2px -70px 25px rgba(0, 0, 0, 0.3), 1px 1px 5px rgba(0, 0, 0, 0.3)',
       none: 'none',
     },
     borderRadius: {
@@ -58,7 +58,7 @@ module.exports = {
       fontFamily: {
         display: ['Sen', 'San-serif', 'Roboto'],
         head: ['Playfair Display'],
-        desc: ['Montserrat', 'sans-serif'],
+        montserrat: ['Montserrat', 'sans-serif'],
       },
 
       fontSize: {
@@ -102,7 +102,14 @@ module.exports = {
         26.5: '6.625rem',
         30: '7.5rem',
         34: '8.5rem',
+        84: '21rem',
         96: '650px',
+      },
+
+      padding: {
+        58: '14.5rem',
+        68: '17rem',
+        70: '17.5rem',
       },
 
       width: {
@@ -117,6 +124,7 @@ module.exports = {
         55: '13.75rem',
         60: '15rem',
         62.5: '15.625rem',
+        68: '17rem',
         70: '17.5rem',
         75: '18.75rem',
         76: '19rem',
@@ -124,13 +132,16 @@ module.exports = {
         90: '22.5rem',
         92.5: '23.125rem',
         100: '25rem',
+        120: '30rem',
         155: '38.75rem',
+        205: '51.25rem',
         210: '52.5rem',
         250: '62.5rem',
       },
 
       height: {
         19: '4.75rem',
+        25: '25rem',
         34: '8.5rem',
         44: '11rem',
         47.5: '11.875rem',
@@ -139,6 +150,7 @@ module.exports = {
         55: '13.75rem',
         60: '15rem',
         62.5: '15.625rem',
+        68: '17rem',
         70: '17.5rem',
         75: '18.75rem',
         76: '19rem',
@@ -146,8 +158,36 @@ module.exports = {
         90: '22.5rem',
         92.5: '23.125rem',
         100: '25rem',
+        120: '30rem',
         155: '38.75rem',
         210: '52.5rem',
+        205: '51.25rem',
+        250: '62.5rem',
+      },
+
+      minWidth: {
+        19: '4.75rem',
+        25: '6.25rem',
+        34: '8.5rem',
+        44: '11rem',
+        47.5: '11.875rem',
+        50: '12,5rem',
+        52: '13rem',
+        55: '13.75rem',
+        60: '15rem',
+        62.5: '15.625rem',
+        68: '17rem',
+        70: '17.5rem',
+        75: '18.75rem',
+        76: '19rem',
+        82: '20.5rem',
+        90: '22.5rem',
+        92.5: '23.125rem',
+        100: '25rem',
+        120: '30rem',
+        155: '38.75rem',
+        210: '52.5rem',
+        205: '51.25rem',
         250: '62.5rem',
       },
 
@@ -170,19 +210,18 @@ module.exports = {
         '-7.5': '1.875rem'
       },
 
-      // boxShadow: {
-      //   '1xl': '0 20px 30px -10px rgba(0, 0, 0, 0.3)',
-      //   '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
-      // },
       dropShadow: {
         '3xl': '0 -15px 85px rgba(0, 0, 0, 0.25)',
       },
+      
     },
   },
   variants: {
     extend: {
       backgroundColor: ['active'],
       outline: ['hover', 'active'],
+      brightness: ['hover', 'focus'],
+      opacity: ['active'],
     },
     animation: ['responsive', 'motion-safe', 'motion-reduce']
   },

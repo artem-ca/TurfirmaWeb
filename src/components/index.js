@@ -1,3 +1,7 @@
+import HomeHead from './HomeHead.svelte' 
+import OtherTourCard from './OtherTourCard.svelte' 
+import OtherTours from './OtherTours.svelte'
+import Footer from './Footer.svelte'
 import Flight from './Flight.svelte'
 import FlightList from './FlightList.svelte'
 import Search from './Search.svelte'
@@ -10,4 +14,4 @@ import HomeTourCard from './HomeTourCard.svelte'
 import ToursLine from './ToursLine.svelte'
 
 
-export {Flight, FlightList, Search, Nav, TestNav, TourSearch, TourCard, ToursList, HomeTourCard, ToursLine}
+export {HomeHead, HomeTourCard, OtherTourCard, OtherTours, Footer, Flight, FlightList, Search, Nav, TestNav, TourSearch, TourCard, ToursList,  ToursLine}
