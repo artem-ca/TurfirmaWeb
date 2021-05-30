@@ -4,7 +4,10 @@
 
 <div class="md:max-w-screen-xl m-auto pt-16 px-5 justify-center ">
   <div
-    class="flex flex-row justify-items-center justify-center text-strange-black space-x-32"
+    class="md:flex md:flex-row 
+    sm:grid sm:grid-rows-2
+    xs:grid xs:grid-rows-2
+    justify-items-center justify-center text-strange-black space-x-32"
   >
     <OtherTourCard />
     <div class="my-10 w-72">

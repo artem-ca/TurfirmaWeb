@@ -1,6 +1,7 @@
 <script>
   import {
     Nav,
+    Footer,
     TestNav,
     TourSearch,
     TourCard,
@@ -31,4 +32,5 @@
     <Route path="signup"><SignUp /></Route>
     <Route path="profile"><Profile /></Route>
   </div>
+  <Footer />
 </Router>

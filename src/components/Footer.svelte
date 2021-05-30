@@ -81,15 +81,25 @@
             />
           </svg>
         </div>
+        <div class="h-20 mt-11 text-lg font-montserrat">
+          <div class="opacity-95">
+            <div>+7 999 777-73-73</div>
+            <p>
+              <a href="mailto:turfirma@gmail.com?"> turfirma@gmail.com </a>
+            </p>
+          </div>
+          <div class="mt-1.5 text-base font-montserrat opacity-80">
+            <div>Екатеринбург</div>
+            <div>Первомайская 73</div>
+          </div>
+        </div>
       </div>
       <div class="flex flex-col space-y-7 links">
         <span>О нас</span>
         <span>Контакты</span>
         <span>Реклама</span>
         <span>Политика конфиденциальности</span>
-        <div class="h-0 pt-24 text-xs opacity-75">
-          © 2021 Turfirma Company Ltd.
-        </div>
+        <p class="h-0 pt-24 text-xs opacity-75">© 2021 Turfirma Company Ltd.</p>
       </div>
       <div class="flex flex-col space-y-7 links">
         <span>Войти</span>

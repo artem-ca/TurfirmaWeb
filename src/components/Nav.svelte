@@ -4,9 +4,11 @@
 
 <nav class="w-full md:h-13 z-50 m-auto bg-dark-gray text-pale-white fixed">
   <div class="sm:max-w-screen-xl flex flex-row m-auto ">
-    <div class="w-1/4 px-5 py-1.5 m-auto font-display text-3xl">
+    <div class="w-1/4 px-5 py-1.5 m-auto ">
       <Link to="/">
-        <span class="cursor-pointer focus:opacity-75">Turfirma</span>
+        <span class="cursor-pointer focus:opacity-75 font-display text-3xl"
+          >Turfirma</span
+        >
       </Link>
     </div>
 
