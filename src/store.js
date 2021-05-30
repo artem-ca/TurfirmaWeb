@@ -1,4 +1,4 @@
-import { writable } from 'svelte/store';
+import { writable } from 'svelte/store'
 
 const storedToken = localStorage.getItem('access_token')
 export const access_token = writable(storedToken)
@@ -12,5 +12,8 @@ expiration.subscribe((value) => localStorage.setItem('expiration', value))
 
 // export const access_token = writable(null);
 // export const expiration = writable(null);
-export const flights = writable([]);
-export const dictionaries = writable({currencies: [], locations: []});
+export const flights = writable([])
+export const dictionaries = writable({ currencies: [], locations: [] })
+
+// users
+export const userData = writable({})
