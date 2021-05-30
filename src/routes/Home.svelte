@@ -1,7 +1,7 @@
 <script>
-  import { HomeHead, OtherTours, Footer } from '../components'
+  import { HomeHead, OtherTours, Footer, TourSearch } from '../components'
 </script>
 
 <HomeHead />
+
 <OtherTours />
-<Footer />

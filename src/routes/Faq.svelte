@@ -1,318 +1,124 @@
 <script>
-  let elements = document.querySelectorAll('[data-menu]')
-
-  for (let i = 0; i < elements.length; i++) {
-    let main = elements[i]
-    main.addEventListener('click', function () {
-      let element = main.parentElement.parentElement
-      let andicators = main.querySelectorAll('svg')
-      let child = element.querySelector('p')
-      child.classList.toggle('hidden')
-      if (child.classList.contains('hidden')) {
-        andicators[0].style.display = 'block'
-        andicators[1].style.display = 'none'
-      } else {
-        andicators[0].style.display = 'none'
-        andicators[1].style.display = 'block'
-      }
-    })
-  }
 </script>
 
-<div class="pt-16">
-  <div class="container mx-auto pt-16 bg-gray-100">
-    <div class="text-center pb-3 md:pb-10 xl:pb-20">
-      <p
-        class="text-gray-500 text-base lg:text-lg uppercase leading-tight mb-4"
-      >
-        Начнем
-      </p>
-      <h1
-        class="px-2 xl:px-0 xl:text-5xl md:text-3xl text-2xl font-extrabold text-gray-800"
-      >
+<div class="container mx-auto">
+  <div class="md:max-w-screen-xl m-auto w-11/12 xl:w-full mx-auto pt-16 px-5">
+    <div class="pt-4 pb-6 md:pb-8 lg:pb-10 xl:pb-12">
+      <p class="text-gray-500 text-lg uppercase leading-tight mb-4">Начнем</p>
+      <h1 class="xl:text-5xl text-3xl font-extrabold text-gray-800">
         Часто задаваемые вопросы
       </h1>
     </div>
-    <div class="w-10/12 mx-auto">
-      <ul>
-        <li class="py-6 border-gray-200 border-solid border-b">
-          <div class="flex justify-between items-center">
-            <h3 class="text-gray-800 text-base md:text-xl xl:text-2xl w-10/12">
+    <div>
+      <div class="mx-auto">
+        <ul class="bg-gray-100 rounded">
+          <li
+            class="border-gray-200 border-solid border-b xl:p-8 lg:p-8 md:p-8 sm:p-8 p-4 rounded"
+          >
+            <p class="text-gray-800 text-2xl xl:w-10/12 w-full mb-4">
               Я забронировал тур, но не получил никаких документов, что делать?
-            </h3>
-            <div data-menu class="cursor-pointer">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="hidden icon icon-tabler icon-tabler-circle-plus"
-                width="36"
-                height="36"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="#A0AEC0"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-label="Open"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" />
-                <circle cx="12" cy="12" r="9" />
-                <line x1="9" y1="12" x2="15" y2="12" />
-                <line x1="12" y1="9" x2="12" y2="15" />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="icon icon-tabler icon-tabler-circle-minus"
-                width="36"
-                height="36"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="#A0AEC0"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-label="Close"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" />
-                <circle cx="12" cy="12" r="9" />
-                <line x1="9" y1="12" x2="15" y2="12" />
-              </svg>
+            </p>
+            <div class="xl:w-10/12 w-full text-gray-600 text-base leading-8">
+              После бронирования тура на сайте в течение 72 часов вы получите
+              письмо с подтверждением бронирования (бронирование подтверждает
+              туроператор). В период праздников этот срок может быть увеличен.
+              Наш менеджер отслеживает ваше бронирование и оповестит вас звонком
+              при изменении его статуса.,<br /> <br />
+
+              Сроки выписки документов на вылет/прилет могут быть длительными.
+              Как правило полный пакет документов турист получает за 1-2 дня до
+              вылета. После получения документов, сверьте их со списком: <br />
+              <br />
+              <ul class="mx-5">
+                <li>авиабилеты на всех вылетающих;</li>
+                <li>ваучер на проживание в отеле;</li>
+                <li>страховка на всех туристов;</li>
+                <li>ваучер на трансфер.</li>
+              </ul>
+
+              <br />
+              Поступление документов отслеживается в личном кабинете. В том случае,
+              если в оговоренный срок не приходит никаких писем, проверьте папку
+              “Спам”.<br /><br />
+
+              При возникновении дополнительных вопросов, свяжитесь с вашим
+              персональным менеджером удобным для вас способом. Приятной
+              поездки!
             </div>
-          </div>
-          <p
-            class="pt-2 md:pt-3 lg:pt-5 text-gray-800 bg-gray-100 text-sm md:text-base xl:text-lg rounded-b-lg"
+          </li>
+          <li
+            class="border-gray-200 border-solid border-b xl:p-8 lg:p-8 md:p-8 sm:p-8 p-4"
           >
-            После бронирования тура на сайте в течение 72 часов вы получите
-            письмо с подтверждением бронирования (бронирование подтверждает
-            туроператор). В период праздников этот срок может быть увеличен. Наш
-            менеджер отслеживает ваше бронирование и оповестит вас звонком при
-            изменении его статуса. Сроки выписки документов на вылет/прилет
-            могут быть длительными. Как правило полный пакет документов турист
-            получает за 1-2 дня до вылета. После получения документов, сверьте
-            их со списком: авиабилеты на всех вылетающих; ваучер на проживание в
-            отеле; страховка на всех туристов; ваучер на трансфер. Поступление
-            документов отслеживается в личном кабинете. В том случае, если в
-            оговоренный срок не приходит никаких писем, проверьте папку “Спам”.
-            При возникновении дополнительных вопросов, свяжитесь с вашим
-            персональным менеджером удобным для вас способом. Приятной поездки!
-          </p>
-        </li>
-        <li class="py-6 border-gray-200 border-solid border-b">
-          <div class="flex justify-between items-center">
-            <h3 class="text-gray-800 text-base md:text-xl xl:text-2xl w-10/12">
-              How do we know what kind of sounds dinosaurs made?
-            </h3>
-            <div data-menu class="cursor-pointer">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="icon icon-tabler icon-tabler-circle-plus"
-                width="36"
-                height="36"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="#A0AEC0"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-label="Open"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" />
-                <circle cx="12" cy="12" r="9" />
-                <line x1="9" y1="12" x2="15" y2="12" />
-                <line x1="12" y1="9" x2="12" y2="15" />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="hidden icon icon-tabler icon-tabler-circle-minus"
-                width="36"
-                height="36"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="#A0AEC0"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-label="Close"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" />
-                <circle cx="12" cy="12" r="9" />
-                <line x1="9" y1="12" x2="15" y2="12" />
-              </svg>
+            <p class="text-gray-800 text-2xl xl:w-10/12 w-full mb-4">
+              Что делать, если оплаченный тур не был подтвержден?
+            </p>
+            <p class="xl:w-10/12 w-full text-gray-600 text-base leading-8">
+              В случае, если в выбранном отеле нет мест, то менеджер предложит
+              вам варианты размещения в других равнозначных отелях (стоимость
+              для вас не изменится). В том случае, если найти альтернативу не
+              удается, деньги будут возвращены на карту в течение 72 часов. <br
+              /> <br />
+              При возникновении дополнительных вопросов, свяжитесь с вашим персональным
+              менеджером удобным для вас способом. Приятной поездки!
+            </p>
+          </li>
+          <li
+            class="border-gray-200 border-solid border-b xl:p-8 lg:p-8 md:p-8 sm:p-8 p-4"
+          >
+            <p class="text-gray-800 text-2xl xl:w-10/12 w-full mb-4">
+              Какие документы взять с собой в аэропорт?
+            </p>
+            <div
+              class="xl:w-10/12 lg:w-10/12 w-full text-gray-600 text-base leading-8"
+            >
+              Перед вылетом проверьте полный комплект документов: <br /> <br />
+
+              <ul>
+                <li>
+                  заграничный паспорт (для поездок за рубеж). Важно! Срок
+                  действия паспорта должен соответствовать правилам принимающей
+                  стороны;
+                </li>
+                <li>паспорт РФ (для поездок по России);</li>
+                <li>
+                  туристический ваучер (ваучер на проживание в отеле и на
+                  трансфер);
+                </li>
+                <li>обязательный медицинский страховой полис;</li>
+                <li>виза (при необходимости).</li>
+              </ul>
+              <br />
+              При возникновении дополнительных вопросов, свяжитесь с вашим персональным
+              менеджером удобным для вас способом. Приятной поездки!
             </div>
-          </div>
-          <p
-            class="hidden pt-2 md:pt-3 lg:pt-5 text-gray-800 bg-gray-100 text-sm md:text-base xl:text-lg rounded-b-lg"
+          </li>
+          <li
+            class="border-gray-200 border-solid border-b xl:p-8 lg:p-8 md:p-8 sm:p-8 p-4 rounded"
           >
-            Find the latest events updates or create events, concerts,
-            conferences, workshops, exhibitions, and cultural events in all
-            cities of the US. The aim of Eventistan is to promote healthy and
-            entertaining event. Greatest appreciation to you and your team for
-            the outstanding job you did for us. The website is just what we
-            wanted, and we were thrilled with the speed your team exercised.
-          </p>
-        </li>
-        <li class="py-6 border-gray-200 border-solid border-b">
-          <div class="flex justify-between items-center">
-            <h3 class="text-gray-800 text-base md:text-xl xl:text-2xl w-10/12">
-              Why work from home is not as fun as we thought it would be?
-            </h3>
-            <div data-menu class="cursor-pointer">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="icon icon-tabler icon-tabler-circle-plus"
-                width="36"
-                height="36"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="#A0AEC0"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-label="Open"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" />
-                <circle cx="12" cy="12" r="9" />
-                <line x1="9" y1="12" x2="15" y2="12" />
-                <line x1="12" y1="9" x2="12" y2="15" />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="hidden icon icon-tabler icon-tabler-circle-minus"
-                width="36"
-                height="36"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="#A0AEC0"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-label="Close"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" />
-                <circle cx="12" cy="12" r="9" />
-                <line x1="9" y1="12" x2="15" y2="12" />
-              </svg>
-            </div>
-          </div>
-          <p
-            class="hidden pt-2 md:pt-3 lg:pt-5 text-gray-800 bg-gray-100 text-sm md:text-base xl:text-lg rounded-b-lg"
-          >
-            Find the latest events updates or create events, concerts,
-            conferences, workshops, exhibitions, and cultural events in all
-            cities of the US. The aim of Eventistan is to promote healthy and
-            entertaining event. Greatest appreciation to you and your team for
-            the outstanding job you did for us. The website is just what we
-            wanted, and we were thrilled with the speed your team exercised.
-          </p>
-        </li>
-        <li class="py-6 border-gray-200 border-solid border-b">
-          <div class="flex justify-between items-center">
-            <h3 class="text-gray-800 text-base md:text-xl xl:text-2xl w-10/12">
-              In what way did human beings started using words?
-            </h3>
-            <div data-menu class="cursor-pointer">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="icon icon-tabler icon-tabler-circle-plus"
-                width="36"
-                height="36"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="#A0AEC0"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-label="Open"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" />
-                <circle cx="12" cy="12" r="9" />
-                <line x1="9" y1="12" x2="15" y2="12" />
-                <line x1="12" y1="9" x2="12" y2="15" />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="hidden icon icon-tabler icon-tabler-circle-minus"
-                width="36"
-                height="36"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="#A0AEC0"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-label="Close"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" />
-                <circle cx="12" cy="12" r="9" />
-                <line x1="9" y1="12" x2="15" y2="12" />
-              </svg>
-            </div>
-          </div>
-          <p
-            class="hidden pt-2 md:pt-3 lg:pt-5 text-gray-800 bg-gray-100 text-sm md:text-base xl:text-lg rounded-b-lg"
-          >
-            Find the latest events updates or create events, concerts,
-            conferences, workshops, exhibitions, and cultural events in all
-            cities of the US. The aim of Eventistan is to promote healthy and
-            entertaining event. Greatest appreciation to you and your team for
-            the outstanding job you did for us. The website is just what we
-            wanted, and we were thrilled with the speed your team exercised.
-          </p>
-        </li>
-        <li class="py-6 border-gray-200 border-solid border-b">
-          <div class="flex justify-between items-center">
-            <h3 class="text-gray-800 text-base md:text-xl xl:text-2xl w-10/12">
-              Which is the least developed area in the world
-            </h3>
-            <div data-menu class="cursor-pointer">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="icon icon-tabler icon-tabler-circle-plus"
-                width="36"
-                height="36"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="#A0AEC0"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-label="Open"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" />
-                <circle cx="12" cy="12" r="9" />
-                <line x1="9" y1="12" x2="15" y2="12" />
-                <line x1="12" y1="9" x2="12" y2="15" />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="hidden icon icon-tabler icon-tabler-circle-minus"
-                width="36"
-                height="36"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="#A0AEC0"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-label="Close"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" />
-                <circle cx="12" cy="12" r="9" />
-                <line x1="9" y1="12" x2="15" y2="12" />
-              </svg>
-            </div>
-          </div>
-          <p
-            class="hidden pt-2 md:pt-3 lg:pt-5 text-gray-800 bg-gray-100 text-sm md:text-base xl:text-lg rounded-b-lg"
-          >
-            Find the latest events updates or create events, concerts,
-            conferences, workshops, exhibitions, and cultural events in all
-            cities of the US. The aim of Eventistan is to promote healthy and
-            entertaining event. Greatest appreciation to you and your team for
-            the outstanding job you did for us. The website is just what we
-            wanted, and we were thrilled with the speed your team exercised.
-          </p>
-        </li>
-      </ul>
+            <p class="text-gray-800 text-2xl xl:w-10/12 w-full mb-4">
+              Какие достопримечательности посмотреть в путешествии?
+            </p>
+            <p
+              class="xl:w-10/12 lg:w-10/12 w-full text-gray-600 text-base leading-8"
+            >
+              Чтобы тур прошел ярче и остался в памяти на долгие годы, в нашем
+              агентстве мы разрабатываем индивидуальные маршруты для туристов.
+              <br /><br />
+              Создание маршрута означает, что вы отправитесь в увлекательное путешествие,
+              в котором лучше познакомитесь с местной культурой, историей и насладитесь
+              каждой минутой, проведенной на отдыхе. Разработка маршрута производится
+              индивидуально на основе предпочтений туристов. А теперь замечательная
+              новость: всё лето для наших покупателей разработка индивидуального
+              маршрута проводится в подарок!
+              <br /><br />
+
+              При возникновении дополнительных вопросов, свяжитесь с вашим
+              персональным менеджером удобным для вас способом. Приятной
+              поездки!
+            </p>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

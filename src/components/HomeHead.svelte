@@ -66,7 +66,7 @@
               stroke-linejoin="round"
             />
           </svg>
-          <div class="w-28 pl-2 pt-0.5 font-thin text-lg">
+          <div class="w-30 pl-2 pt-0.5 font-thin text-lg">
             Посмотрите видео-отчет
           </div>
         </div>

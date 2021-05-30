@@ -6,7 +6,10 @@
 
 <div class="md:max-w-screen-xl  text-pale-white">
   <div
-    class="w-155 h-90 bg-local bg-cover rounded-3xl cursor-pointer 
+    class="md:w-155  md:h-90 
+    sm:w-76 sm:h-48
+    xs:w-76 xs:h-48
+    bg-local bg-cover rounded-3xl cursor-pointer 
     shadow-inner-3 filter hover:brightness-110
     transition duration-700 delay-5 ease-in-out 
     transform hover:translate-x-1.5 "

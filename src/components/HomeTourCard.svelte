@@ -3,7 +3,7 @@
 </script>
 
 <div
-  class="flex flex-row  w-75 h-47.5 m-auto cursor-pointer bg-transparent relative"
+  class="flex flex-row  w-75 h-47.5 m-auto cursor-pointer bg-transparent relative "
 >
   <div
     class="w-75 h-47.5 bg-strange-gray rounded-4xl
@@ -14,8 +14,10 @@
       class="w-70 h-44 mx-auto mt-2 rounded-4xl bg-local bg-cover shadow-inner-2 "
       style="background-image: url('{img}')"
     >
-      <div class="w-34 ml-5 mt-25 text-pale-white absolute flex flex-row">
-        <div>Водопады Исладнии</div>
+      <div
+        class="w-34 ml-5 mt-25 text-pale-white absolute flex flex-row font-montserrat text-sm"
+      >
+        <div class="pt-2.5">Водопады Исладнии</div>
         <div class="ml-32 mt-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
