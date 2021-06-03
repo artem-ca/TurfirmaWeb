@@ -1,5 +1,5 @@
 <script>
-  import { Link } from 'svelte-routing'
+  import { Link } from "svelte-routing";
 </script>
 
 <nav class="w-full md:h-13 z-50 m-auto bg-dark-gray text-pale-white fixed">
@@ -31,6 +31,10 @@
     </div>
 
     <div class="w-1/4 flex items-center justify-end mr-5 my-1.5 space-x-3">
+      <Link to="admin">
+        <button class="w-10">admin</button>
+      </Link>
+
       <Link to="test">
         <button class="w-10">test</button>
       </Link>

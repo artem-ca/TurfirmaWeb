@@ -1,5 +1,7 @@
 <script>
-  import { OtherTourCard } from '../components'
+  import { Link } from "svelte-routing";
+
+  import { OtherTourCard } from "../Tours";
 </script>
 
 <div class="md:max-w-screen-xl m-auto pt-16 px-5 justify-center ">
@@ -19,14 +21,16 @@
         Первозданный вид дикой природы и свежий воздух.
       </div>
       <div class="mt-9">
-        <button
-          class="w-full min-w-25 md:h-14 sm:h-14 xs:h-14 text-lg
+        <Link to="tours">
+          <button
+            class="w-full min-w-25 md:h-14 sm:h-14 xs:h-14 text-lg
           border-3 border-vinous opacity-90 rounded-4xl 
-            focus:outline-none 
-            hover:opacity-80 active:opacity-60 "
-        >
-          Смотреть все туры
-        </button>
+          focus:outline-none 
+          hover:opacity-80 active:opacity-60 "
+          >
+            Смотреть все туры
+          </button>
+        </Link>
       </div>
     </div>
   </div>

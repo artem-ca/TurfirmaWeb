@@ -1,7 +1,7 @@
 <script>
-  import { Flight, Search } from '../components'
+  import { Search, Flight } from "../components/Tickets";
 
-  import { testFlights } from '../utils/data'
+  import { testFlights } from "../utils/data";
 </script>
 
 <div class="pt-12">

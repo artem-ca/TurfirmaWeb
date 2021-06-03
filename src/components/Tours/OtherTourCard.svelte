@@ -1,7 +1,5 @@
 <script>
-  import { ToursLine } from '../components'
-
-  let background = 'img/dagestan_2_sedlo_gora.jpg'
+  let background = "img/dagestan_2_sedlo_gora.jpg";
 </script>
 
 <div class="md:max-w-screen-xl  text-pale-white">

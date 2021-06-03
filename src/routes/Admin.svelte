@@ -1,3 +1,13 @@
-<div class="pt-24 pl-12 p-12">
-    ADMIN
+<script>
+  import {
+    AdminNav,
+    ChangeTour,
+    ChangeHotel,
+    ChangeClient,
+  } from "../components/Admin";
+</script>
+
+<div class="pt-12">
+  <AdminNav />
+  <ChangeHotel />
 </div>

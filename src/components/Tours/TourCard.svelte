@@ -1,7 +1,5 @@
 <script>
-  import { config } from '../config.js'
-
-  let background = 'img/mayak_zakat.jpg'
+  let background = "img/mayak_zakat.jpg";
 </script>
 
 <div

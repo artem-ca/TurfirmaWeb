@@ -1,13 +1,7 @@
 <script>
-  import {
-    Flight,
-    Search,
-    TourSearch,
-    TourCard,
-    ToursList,
-  } from '../components'
+  import { TourSearch, ToursList } from "../components/Tours";
 
-  import { testFlights } from '../utils/data'
+  import { testFlights } from "../utils/data";
 </script>
 
 <div class="pt-12">

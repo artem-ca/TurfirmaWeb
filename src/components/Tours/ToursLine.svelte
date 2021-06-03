@@ -1,5 +1,5 @@
 <script>
-  import { HomeTourCard } from '../components'
+  import { HomeTourCard } from "../Tours";
 </script>
 
 <div

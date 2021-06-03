@@ -1,26 +1,35 @@
 <script>
+  import { Router, Route } from "svelte-routing";
+
+  import firebase from "firebase/app";
+  import firebaseConfig from "./firebase/config.json";
+
+  import { FirebaseApp } from "sveltefire";
+
+  import { Nav, TestNav, Footer } from "./components/Site";
+
   import {
-    Nav,
-    Footer,
-    TestNav,
-    TourSearch,
-    TourCard,
-    HomeTourCard,
-    ToursLine,
     Private,
-  } from './components'
-  import { Home, Tours, Tickets, Faq, SignIn, SignUp, Profile } from './routes'
-  import { Router, Route } from 'svelte-routing'
+    AdminTours,
+    AdminHotels,
+    AdminClients,
+  } from "./components/Admin";
 
-  import firebase from 'firebase/app'
-  import firebaseConfig from './firebase/config.json'
-
-  import { FirebaseApp } from 'sveltefire'
+  import {
+    Home,
+    Tours,
+    Tickets,
+    Faq,
+    SignIn,
+    SignUp,
+    Profile,
+    Admin,
+  } from "./routes";
 
   if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig)
+    firebase.initializeApp(firebaseConfig);
   } else {
-    firebase.app()
+    firebase.app();
   }
 
   // api.getToken().then((data) => console.log(data));
@@ -29,13 +38,13 @@
 
   // let promise = api.getFlights("PAR", 200);
 
-  export let url = ''
+  export let url = "";
 </script>
 
 <FirebaseApp {firebase}>
   <Router {url}>
     <Nav />
-    <div id="check" class="pt-12 bg-strange-gray">
+    <div id="check" class="bg-pale-white">
       <Route path="/"><Home /></Route>
       <Route path="tours"><Tours /></Route>
       <Route path="tickets"><Tickets /></Route>
@@ -44,6 +53,10 @@
       <Route path="signin"><SignIn /></Route>
       <Route path="signup"><SignUp /></Route>
       <Route path="profile" view={Profile} component={Private} />
+      <Route path="admin"><Admin /></Route>
+      <Route path="tours_admin"><AdminTours /></Route>
+      <Route path="hotels_admin"><AdminHotels /></Route>
+      <Route path="clients_admin"><AdminClients /></Route>
     </div>
     <Footer />
   </Router>

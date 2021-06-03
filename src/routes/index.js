@@ -5,5 +5,8 @@ import Faq from './Faq.svelte'
 import SignUp from './SignUp.svelte'
 import SignIn from './SignIn.svelte'
 import Profile from './Profile.svelte'
+import Admin from './Admin.svelte'
 
-export { Home, Tours, Tickets, Faq, SignIn, SignUp, Profile }
+
+
+export { Home, Tours, Tickets, Faq, SignIn, SignUp, Profile, Admin }
