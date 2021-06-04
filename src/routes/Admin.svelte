@@ -9,5 +9,5 @@
 
 <div class="pt-12">
   <AdminNav />
-  <ChangeHotel />
+  <!-- <ChangeHotel /> -->
 </div>

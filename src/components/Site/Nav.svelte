@@ -49,7 +49,7 @@
 
       <Link to="signup">
         <button
-          class="w-28 text-dark-gray bg-pale-white hover:opacity-90 border rounded-md "
+          class="w-28 text-dark-gray bg-pale-white hover:opacity-90 border rounded-md"
           >Регистрация</button
         >
       </Link>

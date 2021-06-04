@@ -1,5 +1,7 @@
 <script>
-  import { AdminNav } from "../Admin";
+  import { AdminNav, ChangeTour } from "../Admin";
+
+  let showForm = false;
 </script>
 
 <div class="pt-12">
@@ -38,6 +40,12 @@
                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
                     Город
+                  </th>
+                  <th
+                    scope="col"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Отель
                   </th>
                   <th
                     scope="col"
@@ -91,6 +99,11 @@
                       <span>Махачкала</span>
                     </div>
                   </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">
+                      <span>Отель "1000 звезд"</span>
+                    </div>
+                  </td>
 
                   <td class="px-6 py-4 whitespace-nowrap">
                     <span
@@ -109,13 +122,17 @@
                   <td
                     class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
                   >
-                    <a href="#" class="text-indigo-600 hover:text-indigo-900"
-                      >Изменить</a
+                    <a
+                      href="#"
+                      class="text-indigo-600 hover:text-indigo-900"
+                      on:click={() => (showForm = true)}>Изменить</a
                     >
                   </td>
                 </tr>
 
-                <!-- More people... -->
+                {#if showForm}
+                  <ChangeTour />
+                {/if}
               </tbody>
             </table>
           </div>

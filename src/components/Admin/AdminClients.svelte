@@ -1,5 +1,7 @@
 <script>
-  import { AdminNav } from "../Admin";
+  import { AdminNav, ChangeClient } from "../Admin";
+
+  let showForm = false;
 </script>
 
 <div class="pt-12">
@@ -85,13 +87,16 @@
                   <td
                     class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
                   >
-                    <a href="#" class="text-indigo-600 hover:text-indigo-900"
-                      >Изменить</a
+                    <a
+                      href="#"
+                      class="text-indigo-600 hover:text-indigo-900"
+                      on:click={() => (showForm = true)}>Изменить</a
                     >
                   </td>
                 </tr>
-
-                <!-- More people... -->
+                {#if showForm}
+                  <ChangeClient />
+                {/if}
               </tbody>
             </table>
           </div>

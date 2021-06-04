@@ -2,7 +2,7 @@
   import { User } from "sveltefire";
   import "firebase/auth";
 
-  // import { SignIn } from ".../";
+  import { SignIn } from "../../routes";
 
   export let view;
 
@@ -20,7 +20,7 @@
       class="text-black border  p-2 rounded-xl pt-20"
       on:click={() => auth.signInAnonymously()}>Анонимный вход</button
     >
-    <!-- <SignIn /> -->
+    <SignIn />
   </div>
   <!-- авторизован -->
   <button

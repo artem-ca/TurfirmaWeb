@@ -22,67 +22,70 @@
 </div> -->
 
 <div
-  class="sm:max-w-screen-xl 
-            flex flex-row 
-            m-auto mt-56 
-            w-210 h-62.5 rounded-3xl 
-            items-center 
-            bg-dark-gray text-pale-white"
+  class="sm:max-w-screen-md h-62.5
+         m-auto my-10 rounded-3xl
+        bg-dark-gray text-pale-white
+        flex "
 >
-  <div class="w-40 h-64">
-    <div class="w-full text-center pt-28 align-middle">Logo</div>
+  <div class="flex h-full items-center">
+    <div class="bg-red-500 mx-7 rounded-md ">
+      <div class="p-8 text-center text-strange-black">Logo</div>
+    </div>
   </div>
 
-  <div class="flex flex-col p-2">
+  <div
+    class="flex flex-col space-y-10 justify-center font-montserrat text-sm text-pale-white"
+  >
     <div class="flex flex-row">
-      <div class="p-2">
-        <span class="block">5:35</span>
-        koltsovo
+      <div class="flex flex-col text-left w-18">
+        <span class="text-2xl text-red-500 ">05:35</span>
+        <span>Кольцово</span>
+        <span>SVX</span>
       </div>
 
-      <div class="p-2">2:35</div>
+      <div class="my-4 mx-4 border-t text-strange-gray text-xs">ssssssss</div>
 
-      <div class="p-2">
-        <span>5:35</span>
-        koltsovo
+      <span class="text-sm my-2 text-red-500 ">2ч35мин</span>
+
+      <div class="my-4 mx-4 border-t text-strange-gray text-xs">ssssssss</div>
+
+      <div class="flex flex-col text-left text-sm w-18">
+        <span class="text-2xl  text-red-500">06:10</span>
+        <span>Домодедово</span>
+        <span>DME</span>
       </div>
     </div>
 
-    <div>obratno</div>
-  </div>
-
-  <div class="cursor-pointer"><button>6666 Р</button></div>
-</div>
-
-<div
-  class="sm:max-w-screen-xl 
-            flex flex-row 
-            m-auto mt-56 
-            w-210 h-62.5 rounded-3xl 
-            items-center 
-            bg-dark-gray text-pale-white"
->
-  <div class="w-40 h-64">
-    <div class="w-full text-center pt-28 align-middle">Logo</div>
-  </div>
-
-  <div class="flex flex-col p-2">
     <div class="flex flex-row">
-      <div class="p-2">
-        <span class="block">5:35</span>
-        koltsovo
+      <div class="flex flex-col text-left w-18">
+        <span class="text-2xl  text-red-500">05:35</span>
+        <span>Домодедово</span>
+        <span>DME</span>
       </div>
 
-      <div class="p-2">2:35</div>
+      <div class="my-4 mx-4 border-t text-strange-gray text-xs">ssssssss</div>
 
-      <div class="p-2">
-        <span>5:35</span>
-        koltsovo
+      <span class="text-sm my-2 text-red-500">2ч35мин</span>
+
+      <div class="my-4 mx-4 border-t text-strange-gray text-xs">ssssssss</div>
+
+      <div class="flex flex-col text-left w-18">
+        <span class="text-2xl  text-red-500">05:35</span>
+        <span>Кольцово</span>
+        <span>SVX</span>
       </div>
     </div>
-
-    <div>obratno</div>
   </div>
 
-  <div class="cursor-pointer"><button>6666 Р</button></div>
+  <div class="w-5 h-full ml-10 bg-red-500" />
+
+  <div class="flex flex-col w-full self-center">
+    <button
+      class="m-7 p-2  rounded-md 
+      text-xl font-display
+      bg-red-600 hover:bg-red-500 active:bg-red-400 "
+    >
+      6666 Р
+    </button>
+  </div>
 </div>

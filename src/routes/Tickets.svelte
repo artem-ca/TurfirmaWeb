@@ -7,4 +7,6 @@
 <div class="pt-12">
   <Search />
   <Flight flight={testFlights[0]} />
+  <Flight flight={testFlights[0]} />
+  <Flight flight={testFlights[0]} />
 </div>
