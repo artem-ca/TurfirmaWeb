@@ -25,7 +25,7 @@
   class="sm:max-w-screen-md h-62.5
          m-auto my-10 rounded-3xl
         bg-dark-gray text-pale-white
-        flex "
+        flex cursor-pointer relative"
 >
   <div class="flex h-full items-center">
     <div class="bg-red-500 mx-7 rounded-md ">
@@ -77,7 +77,7 @@
     </div>
   </div>
 
-  <div class="w-5 h-full ml-10 bg-red-500" />
+  <div class="w-7 h-full ml-10 bg-red-500" />
 
   <div class="flex flex-col w-full self-center">
     <button

@@ -19,5 +19,15 @@
         Клиенты
       </button>
     </Link>
+    <Link to="applications_admin">
+      <button class="w-16 border border-darkest-gray rounded-md">
+        Заявки
+      </button>
+    </Link>
+    <Link to="booking_admin">
+      <button class="w-16 border border-darkest-gray rounded-md">
+        Брони
+      </button>
+    </Link>
   </div>
 </nav>

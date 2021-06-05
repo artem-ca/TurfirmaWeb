@@ -13,6 +13,8 @@
     AdminTours,
     AdminHotels,
     AdminClients,
+    AdminApplications,
+    AdminBooking,
   } from "./components/Admin";
 
   import {
@@ -57,6 +59,8 @@
       <Route path="tours_admin"><AdminTours /></Route>
       <Route path="hotels_admin"><AdminHotels /></Route>
       <Route path="clients_admin"><AdminClients /></Route>
+      <Route path="applications_admin"><AdminApplications /></Route>
+      <Route path="booking_admin"><AdminBooking /></Route>
     </div>
     <Footer />
   </Router>

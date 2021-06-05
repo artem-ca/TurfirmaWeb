@@ -1,8 +1,20 @@
 <script>
-  import { Link } from 'svelte-routing'
-  import { fade, fly, scale, slide } from 'svelte/transition'
+  import { Link } from "svelte-routing";
+  import { fade, fly, scale, slide } from "svelte/transition";
 
-  let visible = true
+  import firebase from "firebase/app";
+  // import firebaseConfig from ". firebase/config.json";
+
+  import { User, Doc, Collection } from "sveltefire";
+  import "firebase/auth";
+
+  let query = (ref) => ref.orderBy("name");
+
+  function nextPage(last) {
+    query = (ref) => ref.orderBy("name").startAfter(last.uid);
+  }
+
+  let visible = true;
 </script>
 
 <nav class="bg-gray-900 pt-12">
@@ -229,3 +241,46 @@
     </div>
   </div>
 </nav>
+
+<div class="m-40">
+  <Doc path={"Tours/Дагестан"} let:data={дагестан} let:ref={docRef}>
+    <div>Data loaded, yay 🍦!</div>
+    <div>{дагестан.country}</div>
+
+    <!-- Default Slot -->
+
+    <!-- Only shown when loading -->
+    <!-- <div slot="" /> -->
+
+    <!-- Shown on error or if nothing loads after maxWait time-->
+    <!-- <div slot="fallback" /> -->
+  </Doc>
+
+  <hr />
+
+  <Collection path={"Tours"} {query} log let:data={tours}>
+    <div>
+      {#each tours as tour}
+        <div>{tour.name}</div>
+      {/each}
+    </div>
+
+    <div slot="loading">Loading...</div>
+
+    <div slot="fallback">Unable to display comments...</div>
+  </Collection>
+
+  <!-- TODO: переписать запрос -->
+
+  <Collection path={"Users"} {query} log let:data={users}>
+    <div>
+      {#each users as user}
+        <div>{user.uid}</div>
+      {/each}
+    </div>
+
+    <div slot="loading">Loading...</div>
+
+    <div slot="fallback">Unable to display comments...</div>
+  </Collection>
+</div>
