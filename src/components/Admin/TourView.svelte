@@ -1,6 +1,39 @@
 <script>
+  import { getContext } from "svelte";
+  export let tour;
+  export let closeFunction;
+
+  const DEBUG = true;
+
+  const app = getContext("firebase").getFirebase();
+  const firestore = app.firestore();
+
+  let { name, country, city, area, hotel, id } = tour;
+  DEBUG && console.log(tour);
+
   let files;
   let visa = true;
+
+  function addTour() {
+    let toursRef = firestore.collection(`/Tours`);
+    let data = { name, country, city, area, hotel };
+
+    toursRef
+      .add(data)
+      .then((docRef) => console.log("=== TourView: tour added ", docRef.id))
+      .catch((error) => console.error("=== TourView: tour NOT added ", error));
+  }
+  function updateTour() {
+    let tourRef = firestore.doc(`/Tours/${id}`);
+    let data = { name, country, city, area, hotel };
+
+    tourRef
+      .update(data)
+      .then(() => console.log("=== TourView: tour updated ", id))
+      .catch((error) =>
+        console.error("=== TourView: tour NOT updated ", error)
+      );
+  }
 
   $: if (files) {
     // Переменная `files` будет типа `FileList`, а не массивом:
@@ -104,6 +137,7 @@
                 >Название
               </label>
               <input
+                bind:value={name}
                 type="text"
                 id="TourName"
                 name="tourName"
@@ -198,13 +232,26 @@
           </div>
         </div>
         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+          {#if id === ""}
+            <button
+              on:click={addTour}
+              type="button"
+              class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 active:bg-green-600 sm:ml-3 sm:w-auto sm:text-sm"
+            >
+              Добавить
+            </button>
+          {:else}
+            <button
+              on:click={updateTour}
+              type="button"
+              class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 active:bg-green-600 sm:ml-3 sm:w-auto sm:text-sm"
+            >
+              Сохранить
+            </button>
+          {/if}
+
           <button
-            type="button"
-            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 active:bg-green-600 sm:ml-3 sm:w-auto sm:text-sm"
-          >
-            Сохрнаить
-          </button>
-          <button
+            on:click={closeFunction}
             type="button"
             class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
           >

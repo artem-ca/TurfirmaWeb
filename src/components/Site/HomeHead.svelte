@@ -4,7 +4,7 @@
   import { ApplicationForm } from "../Site";
   import { ToursLine } from "../Tours";
 
-  let background = "img/mayak_vecher.jpg";
+  let background = "img/mayak_vecher.webp";
 
   let showForm = false;
 </script>

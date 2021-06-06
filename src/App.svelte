@@ -10,7 +10,6 @@
 
   import {
     Private,
-    AdminTours,
     AdminHotels,
     AdminClients,
     AdminApplications,
@@ -26,6 +25,7 @@
     SignUp,
     Profile,
     Admin,
+    AdminTours,
   } from "./routes";
 
   if (!firebase.apps.length) {
@@ -56,7 +56,7 @@
       <Route path="signup"><SignUp /></Route>
       <Route path="profile" view={Profile} component={Private} />
       <Route path="admin"><Admin /></Route>
-      <Route path="tours_admin"><AdminTours /></Route>
+      <Route path="admin/tours"><AdminTours /></Route>
       <Route path="hotels_admin"><AdminHotels /></Route>
       <Route path="clients_admin"><AdminClients /></Route>
       <Route path="applications_admin"><AdminApplications /></Route>

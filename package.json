@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "firebase": "^8.6.3",
+    "firebase-tools": "^9.12.1",
     "svelte-calendar": "^2.0.4",
     "svelte-routing": "^1.6.0",
     "sveltefire": "^0.1.5"

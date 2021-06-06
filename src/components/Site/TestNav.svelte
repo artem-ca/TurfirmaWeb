@@ -1,8 +1,10 @@
 <script>
+  // @ts-nocheck
+
   import { Link } from "svelte-routing";
   import { fade, fly, scale, slide } from "svelte/transition";
 
-  import { AdminNav, ChangeTour } from "../Admin";
+  import { AdminNav, TourView } from "../Admin";
 
   let showForm = false;
 
@@ -248,18 +250,18 @@
 </nav>
 
 <div class="m-40">
-  <Doc path={"Tours/Дагестан"} let:data={дагестан} let:ref={docRef}>
+  <!-- <Doc path={"Tours/Дагестан"} let:data={дагестан} let:ref={docRef}>
     <div>Data loaded, yay 🍦!</div>
     <div>{дагестан.country}</div>
 
     <!-- Default Slot -->
 
-    <!-- Only shown when loading -->
-    <!-- <div slot="" /> -->
+  <!-- Only shown when loading -->
+  <!-- <div slot="" /> -->
 
-    <!-- Shown on error or if nothing loads after maxWait time-->
-    <!-- <div slot="fallback" /> -->
-  </Doc>
+  <!-- Shown on error or if nothing loads after maxWait time-->
+  <!-- <div slot="fallback" />
+  </Doc> -->
 
   <hr />
 
@@ -368,7 +370,7 @@
                             </div>
                             <div class="ml-4">
                               <div class="text-sm font-medium text-gray-900">
-                                <span>Отель "1000 и 1 ночь"</span>
+                                <span>{tour.name}</span>
                               </div>
                             </div>
                           </div>
@@ -420,7 +422,7 @@
                       </tr>
 
                       {#if showForm}
-                        <ChangeTour />
+                        <TourView />
                       {/if}
                     </tbody>
                   {/each}

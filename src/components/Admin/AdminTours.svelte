@@ -1,5 +1,5 @@
 <script>
-  import { AdminNav, ChangeTour } from "../Admin";
+  import { AdminNav, TourView } from "../Admin";
 
   let showForm = false;
 </script>
@@ -131,7 +131,7 @@
                 </tr>
 
                 {#if showForm}
-                  <ChangeTour />
+                  <TourView />
                 {/if}
               </tbody>
             </table>

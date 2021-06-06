@@ -6,7 +6,7 @@
   <div
     class="h-10 mx-5 border-2 border-strange-gray mb-10 pt-2 text-center space-x-5 rounded-b-xl"
   >
-    <Link to="tours_admin">
+    <Link to="admin/tours">
       <button class="w-16 border border-darkest-gray rounded-md"> Туры </button>
     </Link>
     <Link to="hotels_admin">

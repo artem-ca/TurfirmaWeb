@@ -1,7 +1,7 @@
 <script>
   import {
     AdminNav,
-    ChangeTour,
+    TourView,
     ChangeHotel,
     ChangeClient,
   } from "../components/Admin";
