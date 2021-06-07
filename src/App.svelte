@@ -8,13 +8,7 @@
 
   import { Nav, TestNav, Footer } from "./components/Site";
 
-  import {
-    Private,
-    AdminHotels,
-    AdminClients,
-    AdminApplications,
-    AdminBooking,
-  } from "./components/Admin";
+  import { Private, AdminApplications, AdminBooking } from "./components/Admin";
 
   import {
     Home,
@@ -26,6 +20,7 @@
     Profile,
     Admin,
     AdminTours,
+    AdminClients,
   } from "./routes";
 
   if (!firebase.apps.length) {
@@ -57,8 +52,7 @@
       <Route path="profile" view={Profile} component={Private} />
       <Route path="admin"><Admin /></Route>
       <Route path="admin/tours"><AdminTours /></Route>
-      <Route path="hotels_admin"><AdminHotels /></Route>
-      <Route path="clients_admin"><AdminClients /></Route>
+      <Route path="admin/clients"><AdminClients /></Route>
       <Route path="applications_admin"><AdminApplications /></Route>
       <Route path="booking_admin"><AdminBooking /></Route>
     </div>

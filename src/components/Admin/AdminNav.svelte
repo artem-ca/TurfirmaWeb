@@ -9,12 +9,7 @@
     <Link to="admin/tours">
       <button class="w-16 border border-darkest-gray rounded-md"> Туры </button>
     </Link>
-    <Link to="hotels_admin">
-      <button class="w-16 border border-darkest-gray rounded-md">
-        Отели
-      </button>
-    </Link>
-    <Link to="clients_admin">
+    <Link to="admin/clients">
       <button class="w-16 border border-darkest-gray rounded-md">
         Клиенты
       </button>

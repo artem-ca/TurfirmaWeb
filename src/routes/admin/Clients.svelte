@@ -1,15 +1,10 @@
 <script>
-  import { AdminNav, TourView, TourCard } from "../../components/Admin";
+  import { AdminNav, ClientView, ClientCard } from "../../components/Admin";
   import { Collection } from "sveltefire";
 
-  let emptyTour = {
+  let emptyClient = {
     id: "",
     name: "",
-    country: "",
-    city: "",
-    visa: "",
-    area: "",
-    hotel: "",
   };
 
   let view = false;
@@ -32,44 +27,27 @@
                     scope="col"
                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Название
+                    Имя
                   </th>
                   <th
                     scope="col"
                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Страна
-                  </th>
-                  <th
-                    scope="col"
-                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Регион
-                  </th>
-                  <th
-                    scope="col"
-                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Город
-                  </th>
-                  <th
-                    scope="col"
-                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Отель
-                  </th>
-                  <th
-                    scope="col"
-                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Виза
+                    Адрес
                   </th>
 
                   <th
                     scope="col"
                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Рейтинг
+                    Паспорт
+                  </th>
+
+                  <th
+                    scope="col"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Загранпаспорт
                   </th>
 
                   <th scope="col" class="relative px-6 py-3">
@@ -77,12 +55,12 @@
 
                     <button
                       class="border border-strange-black hover:bg-gray-200 rounded p-2 mt-4"
-                      on:click={() => (view = true)}>Добавить тур</button
+                      on:click={() => (view = true)}>Добавить клиента</button
                     >
 
                     {#if view}
-                      <TourView
-                        tour={emptyTour}
+                      <ClientView
+                        client={emptyClient}
                         closeFunction={() => (view = false)}
                       />
                     {/if}
@@ -90,9 +68,9 @@
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
-                <Collection path={"Tours"} log let:data={tours}>
-                  {#each tours as tour}
-                    <TourCard {tour} />
+                <Collection path={"Users"} log let:data={clients}>
+                  {#each clients as client}
+                    <ClientCard {client} />
                     <!-- <div>{tour.name}</div> -->
                   {/each}
 

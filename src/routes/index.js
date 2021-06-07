@@ -7,6 +7,7 @@ import SignIn from './SignIn.svelte'
 import Profile from './Profile.svelte'
 import Admin from './Admin.svelte'
 import AdminTours from './admin/Tours.svelte'
+import AdminClients from './admin/Clients.svelte'
 
 
-export { Home, Tours, Tickets, Faq, SignIn, SignUp, Profile, Admin,AdminTours }
+export { Home, Tours, Tickets, Faq, SignIn, SignUp, Profile, Admin, AdminTours, AdminClients }

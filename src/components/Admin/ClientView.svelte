@@ -1,6 +1,41 @@
 <script>
+  import { getContext } from "svelte";
+  export let client;
+  export let closeFunction;
+
+  const DEBUG = true;
+
+  const app = getContext("firebase").getFirebase();
+  const firestore = app.firestore();
+
+  let { uid, email, id, name } = client;
+  DEBUG && console.log(client);
+
   let files;
   let visa = true;
+
+  function addClient() {
+    let clientsRef = firestore.collection(`/Users`);
+    let data = { uid, email, name };
+
+    clientsRef
+      .add(data)
+      .then((docRef) => console.log("=== ClientView: client added ", docRef.id))
+      .catch((error) =>
+        console.error("=== ClientView: client NOT added ", error)
+      );
+  }
+  function updateClient() {
+    let tourRef = firestore.doc(`/Users/${id}`);
+    let data = { uid, email };
+
+    tourRef
+      .update(data)
+      .then(() => console.log("=== ClientView: client added ", id))
+      .catch((error) =>
+        console.error("=== ClientView: client NOT added ", error)
+      );
+  }
 
   $: if (files) {
     // Переменная `files` будет типа `FileList`, а не массивом:
@@ -109,6 +144,7 @@
               >Имя
             </label>
             <input
+              bind:value={name}
               type="text"
               id="Name"
               name="name"
@@ -184,13 +220,26 @@
         </div>
       </div>
       <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+        {#if id === ""}
+          <button
+            on:click={addClient}
+            type="button"
+            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 active:bg-green-600 sm:ml-3 sm:w-auto sm:text-sm"
+          >
+            Добавить
+          </button>
+        {:else}
+          <button
+            on:click={updateClient}
+            type="button"
+            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 active:bg-green-600 sm:ml-3 sm:w-auto sm:text-sm"
+          >
+            Сохранить
+          </button>
+        {/if}
+
         <button
-          type="button"
-          class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 active:bg-green-600 sm:ml-3 sm:w-auto sm:text-sm"
-        >
-          Сохрнаить
-        </button>
-        <button
+          on:click={closeFunction}
           type="button"
           class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
         >

@@ -1,18 +1,7 @@
 <script>
-  import { AdminNav, TourView, TourCard } from "../../components/Admin";
-  import { Collection } from "sveltefire";
+  import { AdminNav, Application } from "../Admin";
 
-  let emptyTour = {
-    id: "",
-    name: "",
-    country: "",
-    city: "",
-    visa: "",
-    area: "",
-    hotel: "",
-  };
-
-  let view = false;
+  let showForm = false;
 </script>
 
 <div class="pt-12">
@@ -32,44 +21,19 @@
                     scope="col"
                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Название
+                    Клиент
                   </th>
                   <th
                     scope="col"
                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Страна
+                    Описание
                   </th>
                   <th
                     scope="col"
                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Регион
-                  </th>
-                  <th
-                    scope="col"
-                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Город
-                  </th>
-                  <th
-                    scope="col"
-                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Отель
-                  </th>
-                  <th
-                    scope="col"
-                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Виза
-                  </th>
-
-                  <th
-                    scope="col"
-                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Рейтинг
+                    Дата
                   </th>
 
                   <th scope="col" class="relative px-6 py-3">

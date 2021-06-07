@@ -3,7 +3,7 @@
     AdminNav,
     TourView,
     ChangeHotel,
-    ChangeClient,
+    ClientView,
   } from "../components/Admin";
 </script>
 

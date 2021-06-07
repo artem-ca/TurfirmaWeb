@@ -8,9 +8,11 @@ import Application from './Application.svelte'
 import Booking from './Booking.svelte'
 import TourView from './TourView.svelte'
 import ChangeHotel from './ChangeHotel.svelte'
-import ChangeClient from './ChangeClient.svelte'
-import Private from './ChangeClient.svelte'
+import ClientView from './ClientView.svelte'
+import Private from './ClientView.svelte'
 import TourCard from './TourCard.svelte'
+import ClientCard from './ClientCard.svelte'
+
 
 export {
     AdminNav,
@@ -23,7 +25,8 @@ export {
     Booking,
     TourView,
     ChangeHotel,
-    ChangeClient,
+    ClientView,
     Private,
-    TourCard
+    TourCard,
+    ClientCard
 }

@@ -1,5 +1,5 @@
 <script>
-  import { AdminNav, ChangeClient } from "../Admin";
+  import { AdminNav, ClientView } from "../Admin";
 
   let showForm = false;
 </script>
@@ -95,7 +95,7 @@
                   </td>
                 </tr>
                 {#if showForm}
-                  <ChangeClient />
+                  <ClientView />
                 {/if}
               </tbody>
             </table>

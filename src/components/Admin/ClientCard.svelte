@@ -1,25 +1,25 @@
 <script>
-  import { TourView } from "./";
+  import { ClientView } from "./";
 
   // TODO markdown description
   // npm i marked
   // import marked from 'marked'
   // {@html marked(description)}
 
-  export let tour;
+  export let client;
 
   import { getContext } from "svelte";
   const app = getContext("firebase").getFirebase();
   const firestore = app.firestore();
 
-  function deleteTour() {
-    let tourRef = firestore.doc(`/Tours/${tour.id}`);
+  function deleteClient() {
+    let clientRef = firestore.doc(`/Users/${client.id}`);
 
-    tourRef
+    clientRef
       .delete()
-      .then(() => console.log("=== TourView: tour deleted "))
+      .then(() => console.log("=== ClientView: client deleted "))
       .catch((error) =>
-        console.error("=== TourView: tour NOT deleted ", error)
+        console.error("=== ClientView: client NOT deleted ", error)
       );
   }
 
@@ -38,43 +38,36 @@
       </div>
       <div class="ml-4">
         <div class="text-sm font-medium text-gray-900">
-          <span>{tour.name}</span>
+          <div class="text-sm font-medium text-gray-900">
+            <span>{client.lastname}</span>
+            <span>{client.name} </span>
+            <span>{client.middlename}</span>
+          </div>
+          <div class="text-sm text-gray-500">
+            {client.email}
+          </div>
+          <div class="text-sm text-gray-500">
+            {client.phone}
+          </div>
         </div>
       </div>
     </div>
   </td>
   <td class="px-6 py-4 whitespace-nowrap">
     <div class="text-sm text-gray-900">
-      <span>{tour.country}</span>
-    </div>
-  </td>
-  <td class="px-6 py-4 whitespace-nowrap">
-    <div class="text-sm text-gray-900">
-      <span>{tour.area}</span>
-    </div>
-  </td>
-  <td class="px-6 py-4 whitespace-nowrap">
-    <div class="text-sm text-gray-900">
-      <span>{tour.city}</span>
-    </div>
-  </td>
-  <td class="px-6 py-4 whitespace-nowrap">
-    <div class="text-sm text-gray-900">
-      <span>{tour.hotel}</span>
+      <span>{client.address}, </span>
     </div>
   </td>
 
   <td class="px-6 py-4 whitespace-nowrap">
-    <span
-      class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
-    >
-      Нет
-    </span>
+    <div class="text-sm text-gray-900">
+      <span>{client.address}, </span>
+    </div>
   </td>
 
   <td class="px-6 py-4 whitespace-nowrap">
     <div class="text-sm text-gray-900">
-      <span>4.9</span>
+      <span>{client.address}, </span>
     </div>
   </td>
 
@@ -91,7 +84,7 @@
     <a
       href="#"
       class="mx-2 text-red-600 hover:text-red-900"
-      on:click={deleteTour}
+      on:click={deleteClient}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -110,6 +103,6 @@
     </a>
   </td>
   {#if view}
-    <TourView {tour} closeFunction={() => (view = false)} />
+    <ClientView {client} closeFunction={() => (view = false)} />
   {/if}
 </tr>
