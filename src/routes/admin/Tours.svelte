@@ -1,5 +1,6 @@
 <script>
   import { AdminNav, TourView, TourCard } from "../../components/Admin";
+
   import { Collection } from "sveltefire";
 
   let emptyTour = {
@@ -93,7 +94,6 @@
                 <Collection path={"Tours"} log let:data={tours}>
                   {#each tours as tour}
                     <TourCard {tour} />
-                    <!-- <div>{tour.name}</div> -->
                   {/each}
 
                   <div slot="loading">Loading...</div>

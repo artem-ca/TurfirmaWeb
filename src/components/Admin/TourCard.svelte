@@ -1,10 +1,9 @@
 <script>
-  import { TourView } from "./";
-
   // TODO markdown description
   // npm i marked
   // import marked from 'marked'
   // {@html marked(description)}
+  import { TourView } from "./";
 
   export let tour;
 
@@ -64,17 +63,23 @@
     </div>
   </td>
 
-  <td class="px-6 py-4 whitespace-nowrap">
-    <span
-      class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
-    >
-      Нет
-    </span>
+  <td
+    class="px-6 inline-flex text-xs leading-5 font-semibold rounded-full whitespace-nowrap"
+  >
+    {#if tour.visa}
+      <div class="px-3 py-1 text-xs bg-blue-200 text-blue-800 rounded-full">
+        да
+      </div>
+    {:else}
+      <div class="px-3 py-1 text-xs bg-green-200 text-green-800 rounded-full">
+        нет
+      </div>
+    {/if}
   </td>
 
   <td class="px-6 py-4 whitespace-nowrap">
     <div class="text-sm text-gray-900">
-      <span>4.9</span>
+      <span>{tour.rating}</span>
     </div>
   </td>
 

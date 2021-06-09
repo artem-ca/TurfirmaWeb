@@ -8,15 +8,35 @@
   const app = getContext("firebase").getFirebase();
   const firestore = app.firestore();
 
-  let { name, country, city, area, hotel, id } = tour;
-  DEBUG && console.log(tour);
-
   let files;
-  let visa = true;
+
+  let {
+    id,
+    name,
+    country,
+    city,
+    area,
+    hotel,
+    hotelLink,
+    visa,
+    description,
+    rating,
+  } = tour;
+  DEBUG && console.log(tour);
 
   function addTour() {
     let toursRef = firestore.collection(`/Tours`);
-    let data = { name, country, city, area, hotel };
+    let data = {
+      name,
+      country,
+      city,
+      area,
+      hotel,
+      hotelLink,
+      visa,
+      description,
+      rating,
+    };
 
     toursRef
       .add(data)
@@ -25,7 +45,17 @@
   }
   function updateTour() {
     let tourRef = firestore.doc(`/Tours/${id}`);
-    let data = { name, country, city, area, hotel };
+    let data = {
+      name,
+      country,
+      city,
+      area,
+      hotel,
+      hotelLink,
+      visa,
+      description,
+      rating,
+    };
 
     tourRef
       .update(data)
@@ -49,7 +79,7 @@
 <div>
   <!-- This example requires Tailwind CSS v2.0+ -->
   <div
-    class="fixed z-10 inset-0 overflow-y-auto"
+    class="fixed z-10 inset-0 overflow-y-auto pt-10"
     aria-labelledby="modal-title"
     role="dialog"
     aria-modal="true"
@@ -57,37 +87,16 @@
     <div
       class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
     >
-      <!--
-        Background overlay, show/hide based on modal state.
-  
-        Entering: "ease-out duration-300"
-          From: "opacity-0"
-          To: "opacity-100"
-        Leaving: "ease-in duration-200"
-          From: "opacity-100"
-          To: "opacity-0"
-      -->
       <div
         class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
         aria-hidden="true"
       />
 
-      <!-- This element is to trick the browser into centering the modal contents. -->
       <span
         class="hidden sm:inline-block sm:align-middle sm:h-screen"
         aria-hidden="true">&#8203;</span
       >
 
-      <!--
-        Modal panel, show/hide based on modal state.
-  
-        Entering: "ease-out duration-300"
-          From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-          To: "opacity-100 translate-y-0 sm:scale-100"
-        Leaving: "ease-in duration-200"
-          From: "opacity-100 translate-y-0 sm:scale-100"
-          To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-      -->
       <div
         class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
       >
@@ -142,7 +151,7 @@
                 id="TourName"
                 name="tourName"
                 required
-                class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
+                class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-strange-black dark:text-gray-400"
                 placeholder="Название тура"
               />
             </div>
@@ -153,12 +162,13 @@
                 class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
                 >Страна
               </label>
-              <select
+              <input
+                bind:value={country}
                 type="text"
                 id="Country"
                 name="country"
                 required
-                class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
+                class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-strange-black dark:text-gray-400"
                 placeholder="Страна"
               />
             </div>
@@ -169,12 +179,13 @@
                 class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
                 >Регион
               </label>
-              <select
+              <input
+                bind:value={area}
                 type="text"
                 id="Area"
                 name="area"
                 required
-                class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
+                class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-strange-black dark:text-gray-400"
                 placeholder=""
               />
             </div>
@@ -185,12 +196,13 @@
                 class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
                 >Город
               </label>
-              <select
+              <input
+                bind:value={city}
                 type="text"
                 id="City"
                 name="city"
                 required
-                class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
+                class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-strange-black dark:text-gray-400"
                 placeholder=""
               />
             </div>
@@ -201,12 +213,30 @@
                 class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
                 >Отель
               </label>
-              <select
+              <input
+                bind:value={hotel}
                 type="text"
                 id="Hotel"
                 name="hotel"
                 required
-                class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
+                class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-strange-black dark:text-gray-400"
+                placeholder=""
+              />
+            </div>
+
+            <div class="mt-2 flex flex-col">
+              <label
+                for="HotelLink"
+                class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
+                >Ссылка на отель
+              </label>
+              <input
+                bind:value={hotelLink}
+                type="text"
+                id="HotelLink"
+                name="hotelLink"
+                required
+                class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-strange-black dark:text-gray-400"
                 placeholder=""
               />
             </div>
@@ -220,14 +250,48 @@
 
               <div class="flex flex-row space-x-5 justify-center text-lg">
                 <label>
-                  <input type="radio" bind:group={visa} value={"с визой"} />
+                  <input type="radio" bind:value={visa} />
                   c визой
                 </label>
                 <label>
-                  <input type="radio" bind:group={visa} value={"без визы"} />
+                  <input type="radio" bind:value={visa} />
                   без визы
                 </label>
               </div>
+            </div>
+
+            <div class="mt-2 flex flex-col">
+              <label
+                for="Description"
+                class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
+                >Рейтинг
+              </label>
+              <input
+                bind:value={rating}
+                type="number"
+                id="Rating"
+                name="rating"
+                required
+                class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-strange-black dark:text-gray-400"
+                placeholder=""
+              />
+            </div>
+
+            <div class="mt-2 flex flex-col">
+              <label
+                for="Description"
+                class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
+                >Описание
+              </label>
+              <input
+                bind:value={description}
+                type="text"
+                id="Description"
+                name="description"
+                required
+                class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-strange-black dark:text-gray-400"
+                placeholder=""
+              />
             </div>
           </div>
         </div>

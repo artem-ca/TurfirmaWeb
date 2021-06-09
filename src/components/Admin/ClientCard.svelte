@@ -1,10 +1,9 @@
 <script>
-  import { ClientView } from "./";
-
   // TODO markdown description
   // npm i marked
   // import marked from 'marked'
   // {@html marked(description)}
+  import { ClientView } from "./";
 
   export let client;
 
@@ -39,9 +38,9 @@
       <div class="ml-4">
         <div class="text-sm font-medium text-gray-900">
           <div class="text-sm font-medium text-gray-900">
-            <span>{client.lastname}</span>
+            <span>{client.lastName}</span>
             <span>{client.name} </span>
-            <span>{client.middlename}</span>
+            <span>{client.middleName}</span>
           </div>
           <div class="text-sm text-gray-500">
             {client.email}
@@ -55,19 +54,19 @@
   </td>
   <td class="px-6 py-4 whitespace-nowrap">
     <div class="text-sm text-gray-900">
-      <span>{client.address}, </span>
+      <span>{client.address} </span>
     </div>
   </td>
 
   <td class="px-6 py-4 whitespace-nowrap">
     <div class="text-sm text-gray-900">
-      <span>{client.address}, </span>
+      <span>{client.passport} </span>
     </div>
   </td>
 
   <td class="px-6 py-4 whitespace-nowrap">
     <div class="text-sm text-gray-900">
-      <span>{client.address}, </span>
+      <span>{client.interPassport}</span>
     </div>
   </td>
 

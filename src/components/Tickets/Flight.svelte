@@ -9,7 +9,7 @@
   const { currencies, locations } = $dictionaries;
 </script>
 
-<!-- <div>
+<!-- <div class="mt-18">
   <div class="card-title">Рейс</div>
   <div class="">
     {locations[origin]["detailedName"]} ({locations[origin]["subType"]}) => {locations[

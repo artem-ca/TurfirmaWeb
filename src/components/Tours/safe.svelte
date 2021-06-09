@@ -1,38 +1,20 @@
 <script>
-  import { getContext } from "svelte";
-
-  import { Tour } from "./";
-  import { dest } from "../store.js";
-
-  export let tour;
-  export let closeFunction;
-
-  // let emptyTour = {
-  //   id: "",
-  //   name: "",
-  //   country: "",
-  //   city: "",
-  //   visa: "",
-  //   area: "",
-  //   hotel: "",
-  // };
-
   let background = "img/mayak_zakat.jpg";
 
-  let view = false;
+  export let tour;
 
+  import { getContext } from "svelte";
   const app = getContext("firebase").getFirebase();
   const firestore = app.firestore();
 </script>
 
 <div
   class="flex flex-row 
-    m-auto mt-14
-    w-100 h-60
-    bg-transparent text-pale-white relative cursor-pointer
-    transition duration-300 delay-5 ease-in-out 
-    transform hover:-translate-y-4 bling"
-  on:click={() => (view = true)}
+      m-auto mt-14 
+      w-100 h-60
+      bg-transparent text-pale-white relative cursor-pointer
+      transition duration-300 delay-5 ease-in-out 
+      transform hover:-translate-y-4 bling"
 >
   <div
     class="w-44 h-55 mt-1 absolute rounded-xl bg-local bg-cover shadow-xl"
@@ -42,18 +24,13 @@
   <div class="w-92.5 h-55 bg-dark-gray ml-auto mt-auto rounded-2xl">
     <div class="pl-40 pt-2 absolute text-base">
       <div class="-space-y-0.5">
-        <span class="font-semibold">{tour.name}</span>
-        <div>{tour.hotel}</div>
+        <span class="font-semibold">Невероятная Ирландия</span>
+        <div>The Merrion Hotel, 5</div>
         <div class="text-sm">
-          <span>{tour.country}, </span>
-          <span class="font-thin">{tour.city}</span>
+          <spna>Ирландия, </spna>
+          <span class="font-thin">Дублин</span>
         </div>
-
-        {#if tour.visa}
-          <div class="text-xs text-blue-200">с визой</div>
-        {:else}
-          <div class="text-xs text-green-200">без визы</div>
-        {/if}
+        <div class="text-xs text-blue-200">с визой</div>
       </div>
 
       <div class="mt-5 flex flex-row space-x-1.5">
@@ -117,7 +94,7 @@
             fill="#fafafa"
           />
         </svg>
-        <div class="pl-2">{tour.rating}</div>
+        <div class="pl-2">5.0</div>
       </div>
 
       <div class="mt-6 flex flex-row space-x-5 items-center">
@@ -144,12 +121,9 @@
         </div>
         <div class="">
           <div>Цена от</div>
-          <div>₽ {tour.price}</div>
+          <div>₽ 70 000</div>
         </div>
       </div>
     </div>
   </div>
 </div>
-{#if view}
-  <Tour {tour} closeFunction={() => (view = false)} />
-{/if}

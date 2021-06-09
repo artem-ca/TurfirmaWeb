@@ -8,15 +8,40 @@
   const app = getContext("firebase").getFirebase();
   const firestore = app.firestore();
 
-  let { uid, email, id, name } = client;
+  let {
+    uid,
+    id,
+    email,
+    name,
+    lastName,
+    middleName,
+    phone,
+    address,
+    passport,
+    interPassport,
+    birthday,
+    regDate,
+  } = client;
   DEBUG && console.log(client);
 
   let files;
-  let visa = true;
 
   function addClient() {
     let clientsRef = firestore.collection(`/Users`);
-    let data = { uid, email, name };
+    let data = {
+      uid,
+      id,
+      email,
+      name,
+      lastName,
+      middleName,
+      phone,
+      address,
+      passport,
+      interPassport,
+      birthday,
+      regDate,
+    };
 
     clientsRef
       .add(data)
@@ -26,10 +51,23 @@
       );
   }
   function updateClient() {
-    let tourRef = firestore.doc(`/Users/${id}`);
-    let data = { uid, email };
+    let clientRef = firestore.doc(`/Users/${id}`);
+    let data = {
+      uid,
+      id,
+      email,
+      name,
+      lastName,
+      middleName,
+      phone,
+      address,
+      passport,
+      interPassport,
+      birthday,
+      regDate,
+    };
 
-    tourRef
+    clientRef
       .update(data)
       .then(() => console.log("=== ClientView: client added ", id))
       .catch((error) =>
@@ -58,16 +96,6 @@
   <div
     class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
   >
-    <!--
-            Background overlay, show/hide based on modal state.
-      
-            Entering: "ease-out duration-300"
-              From: "opacity-0"
-              To: "opacity-100"
-            Leaving: "ease-in duration-200"
-              From: "opacity-100"
-              To: "opacity-0"
-          -->
     <div
       class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
       aria-hidden="true"
@@ -79,16 +107,6 @@
       aria-hidden="true">&#8203;</span
     >
 
-    <!--
-            Modal panel, show/hide based on modal state.
-      
-            Entering: "ease-out duration-300"
-              From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-              To: "opacity-100 translate-y-0 sm:scale-100"
-            Leaving: "ease-in duration-200"
-              From: "opacity-100 translate-y-0 sm:scale-100"
-              To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-          -->
     <div
       class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
     >
@@ -128,6 +146,7 @@
               >Фамилия
             </label>
             <input
+              bind:value={lastName}
               type="text"
               id="LastName"
               name="lastName"
@@ -161,6 +180,7 @@
               >Отчество
             </label>
             <input
+              bind:value={middleName}
               type="text"
               id="MiddleName"
               name="MiddleName"
@@ -177,6 +197,7 @@
               >Почта
             </label>
             <input
+              bind:value={email}
               type="text"
               id="Email"
               name="email"
@@ -193,6 +214,7 @@
               >Телефон
             </label>
             <input
+              bind:value={phone}
               type="text"
               id="Phone"
               name="phone"
@@ -209,6 +231,7 @@
               >Адрес
             </label>
             <input
+              bind:value={address}
               type="text"
               id="Address"
               name="address"

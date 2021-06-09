@@ -1,39 +1,45 @@
 <script>
   // @ts-nocheck
 
-  import { config } from '../config.js'
-  import { access_token, expiration, flights, dictionaries } from '../store.js'
-  import DatePicker from 'svelte-calendar'
+  import { config } from "../config.js";
+  import {
+    access_token,
+    expiration,
+    flights,
+    dictionaries,
+    dest,
+  } from "../store.js";
+  import DatePicker from "svelte-calendar";
 
   const getToken = async () => {
-    let current_time = new Date().getTime()
+    let current_time = new Date().getTime();
 
     if (!$access_token || new Date($expiration).getTime() < current_time) {
-      console.log('=== getToken(): getting new access_token')
+      console.log("=== getToken(): getting new access_token");
 
       let response = await fetch(
         `https://test.api.amadeus.com/v1/security/oauth2/token`,
         {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            "Content-Type": "application/x-www-form-urlencoded",
           },
           body: `grant_type=client_credentials&client_id=${config.client_id}&client_secret=${config.client_secret}`,
         }
-      )
-      let json = await response.json()
+      );
+      let json = await response.json();
 
-      let new_expiration = current_time + json.expires_in * 1000
+      let new_expiration = current_time + json.expires_in * 1000;
 
-      access_token.set(json.access_token)
-      expiration.set(new_expiration.toString())
+      access_token.set(json.access_token);
+      expiration.set(new_expiration.toString());
     }
-    return $access_token
-  }
+    return $access_token;
+  };
 
   const getFlights = async (origin, price) => {
-    console.log('=== getFlights(): origin = ', origin)
-    let access_token = await getToken()
+    console.log("=== getFlights(): origin = ", origin);
+    let access_token = await getToken();
 
     let response = await fetch(
       `https://test.api.amadeus.com/v1/shopping/flight-destinations?origin=${origin}&maxPrice=${price}&departureDate=${formatDate(
@@ -46,52 +52,52 @@
         ) + 1
       }`,
       {
-        method: 'GET',
+        method: "GET",
         headers: {
           Authorization: `Bearer ${access_token}`,
         },
       }
-    )
-    let json = await response.json()
-    console.log(json)
+    );
+    let json = await response.json();
+    console.log(json);
     // FIXME: проверять статус и наличие data
-    let data = json.data
+    let data = json.data;
 
-    flights.set([...data])
-    dictionaries.set(json.dictionaries)
-  }
+    flights.set([...data]);
+    dictionaries.set(json.dictionaries);
+  };
 
   // TODO: выводить доступные аэропорты
-  const origins = ['PAR', 'MAD']
-  const destinations = ['PAR', 'MAD']
-  const passengers = [1, 2, 3, 4, 5, 6]
+  const origins = ["PAR", "MAD"];
+  const destinations = ["PAR", "MAD"];
+  const passengers = [1, 2, 3, 4, 5, 6];
 
-  let selectedOrigin = ''
-  let selectedDest = ''
-  let selectedPassenger = passengers[0]
-  let price = 0
+  let selectedOrigin = "";
+  let selectedDest = "";
+  let selectedPassenger = passengers[0];
+  let price = 0;
 
   // ****** Dates Selection ***********
   function formatDate(date) {
     var d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
-      year = d.getFullYear()
+      month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
+      year = d.getFullYear();
 
-    if (month.length < 2) month = '0' + month
-    if (day.length < 2) day = '0' + day
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
 
-    return [year, month, day].join('-')
+    return [day, month, year].join(".");
   }
 
-  let departureDate = new Date()
-  let arrivalDate = new Date()
+  let departureDate = new Date();
+  let arrivalDate = new Date();
   // maxDate: (function(){
   //   var date = new Date();
   //   date.setDate(date.getDate() + 10);
   //   return date;
   // })
-  let arrivalChosen = false
+  let arrivalChosen = false;
 </script>
 
 <!-- TODO: Добавить спейсер между полями/подобрать правильный размер полей -->
@@ -152,10 +158,10 @@
             <option>
               {passenger}
               {passenger <= 1
-                ? 'пассажир'
+                ? "пассажир"
                 : passenger <= 4
-                ? 'пассажира'
-                : 'пассажиров'}
+                ? "пассажира"
+                : "пассажиров"}
             </option>
           {/each}
         </select>

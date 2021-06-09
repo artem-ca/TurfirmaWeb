@@ -1,5 +1,6 @@
 <script>
-  let img = 'img/kolugljufur_iceland.jpg'
+  let img = "img/kolugljufur_iceland.jpg";
+  export let tour;
 </script>
 
 <div
@@ -17,7 +18,7 @@
       <div
         class="w-34 ml-5 mt-25 text-pale-white absolute flex flex-row font-montserrat text-sm"
       >
-        <div class="pt-2.5">Водопады Исладнии</div>
+        <div class="pt-2.5">{tour.name}</div>
         <div class="ml-32 mt-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"

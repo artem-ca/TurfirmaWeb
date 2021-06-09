@@ -17,3 +17,6 @@ export const dictionaries = writable({ currencies: [], locations: [] })
 
 // users
 export const userData = writable({})
+export let dest = writable('')
+
+
