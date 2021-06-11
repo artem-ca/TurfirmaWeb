@@ -34,7 +34,7 @@
 
 <!-- This example requires Tailwind CSS v2.0+ -->
 <div
-  class="fixed z-10 inset-0 overflow-y-auto"
+  class="fixed z-10 inset-0 overflow-y-auto text-strange-black font-montserrat"
   aria-labelledby="modal-title"
   role="dialog"
   aria-modal="true"
@@ -42,37 +42,16 @@
   <div
     class="flex items-end justify-center min-h-screen mt-10 pt-4 px-4 pb-20 text-center sm:block sm:p-0"
   >
-    <!--
-              Background overlay, show/hide based on modal state.
-        
-              Entering: "ease-out duration-300"
-                From: "opacity-0"
-                To: "opacity-100"
-              Leaving: "ease-in duration-200"
-                From: "opacity-100"
-                To: "opacity-0"
-            -->
     <div
       class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
       aria-hidden="true"
     />
 
-    <!-- This element is to trick the browser into centering the modal contents. -->
     <span
       class="hidden sm:inline-block sm:align-middle sm:h-screen"
       aria-hidden="true">&#8203;</span
     >
 
-    <!--
-              Modal panel, show/hide based on modal state.
-        
-              Entering: "ease-out duration-300"
-                From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                To: "opacity-100 translate-y-0 sm:scale-100"
-              Leaving: "ease-in duration-200"
-                From: "opacity-100 translate-y-0 sm:scale-100"
-                To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            -->
     <div
       class="inline-block align-bottom bg-pale-white rounded-lg text-left 
       overflow-hidden shadow-2xl transform transition-all 
@@ -100,7 +79,7 @@
           </div>
           <div class="space-y-0.5">
             <h3
-              class="text-xl leading-6 font-bold text-gray-900 text-center"
+              class="text-xl leading-6 font-bold text-strange-black text-center"
               id="modal-title"
             >
               {name}
@@ -119,6 +98,17 @@
             >
               {rating}
             </div>
+
+            <div
+              class="leading-6 font-bold text-gray-900 text-center "
+              id="modal-title"
+            >
+              {#if tour.visa}
+                <div class="text-blue-400">с визой</div>
+              {:else}
+                <div class=" text-green-400">без визы</div>
+              {/if}
+            </div>
           </div>
           <div
             class="max-w-xl w-full h-90 mt-5 bg-strange-gray text-pale-white rounded-lg m-auto "
@@ -126,7 +116,7 @@
             <span class="">photos</span>
           </div>
 
-          <div class="mt-10 text-strange-black font-montserrat space-y-3">
+          <div class="mt-10  font-montserrat space-y-3">
             <h1 class=" font-semibold text-lg">Описание</h1>
 
             <div>
@@ -134,11 +124,11 @@
             </div>
           </div>
 
-          <div class="mt-5 text-strange-black font-montserrat space-y-3">
+          <div class="mt-5  font-montserrat space-y-3">
             <h1 class=" font-semibold text-lg">Отель</h1>
 
             <div>
-              Ваше проживание будет проходить в отеле {hotel}. <br />
+              Ваше проживание будет проходить в отеле "{hotel}". <br />
               Это очень уютный и комфортный отель, который отлично подходит данному
               туру. <br />
               Подробнее об этом отеле Вы можете узнать на сайте -
@@ -152,9 +142,10 @@
       <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
         <button
           type="button"
-          class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 active:bg-green-600 sm:ml-3 sm:w-auto sm:text-sm"
+          class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 
+          bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 active:bg-green-600 sm:ml-3 sm:w-auto sm:text-sm"
         >
-          Сохрнаить
+          Забронировать
         </button>
         <button
           type="button"

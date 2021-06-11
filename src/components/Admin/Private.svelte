@@ -17,14 +17,14 @@
   <!-- не авторизован -->
   <div slot="signed-out" class="">
     <button
-      class="text-black border  p-2 rounded-xl pt-20"
+      class="text-black border-2 border-black rounded-xl p-20"
       on:click={() => auth.signInAnonymously()}>Анонимный вход</button
     >
     <SignIn />
   </div>
   <!-- авторизован -->
   <button
-    class="text-black border p-2 rounded-xl pt-20"
+    class="text-black border  rounded-xl p-20"
     on:click={() => auth.signOut()}>Выйти</button
   >
   <p class="text-white">

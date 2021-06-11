@@ -1,7 +1,11 @@
 <script>
   import { Link } from "svelte-routing";
 
+  import { Collection } from "sveltefire";
+
   import { OtherTourCard } from "../Tours";
+
+  export let tour;
 </script>
 
 <div class="md:max-w-screen-xl m-auto pt-16 px-5 justify-center ">
@@ -11,7 +15,13 @@
     xs:grid xs:grid-rows-2
     justify-items-center justify-center text-strange-black space-x-32"
   >
-    <OtherTourCard />
+    <Collection path={"Tours"} log let:data={tours}>
+      {#each tours as tour}
+        {#if tour.name === "Горы Дагестана"}
+          <OtherTourCard {tour} />
+        {/if}
+      {/each}
+    </Collection>
     <div class="my-10 w-72">
       <div class="text-2xl font-montserrat font-semibold ">
         Посмотрите все направления туров

@@ -10,9 +10,9 @@
   let view = false;
 </script>
 
-<div class="md:max-w-screen-xl md:flex m-auto pt-1 justify-center mb-28">
+<div class="md:max-w-screen-xl md:flex m-auto pt-1 justify-center">
   <div
-    class="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 md:gap-x-10 xl:gap-5 mx-5 pb-20 elast"
+    class="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 md:gap-x-10 xl:gap-5 mx-5  elast"
   >
     <Collection path={"Tours"} log let:data={tours}>
       {#each tours as tour}

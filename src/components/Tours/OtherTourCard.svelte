@@ -1,12 +1,18 @@
 <script>
+  import { Tour } from "../Tours";
+
+  export let tour;
+
+  let view = false;
+
   let background = "img/dagestan_2_sedlo_gora.jpg";
 </script>
 
-<div class="md:max-w-screen-xl  text-pale-white">
+<div class="md:max-w-screen-xl  text-pale-white" on:click={() => (view = true)}>
   <div
-    class="md:w-155  md:h-90 
-    sm:w-76 sm:h-48
-    xs:w-76 xs:h-48
+    class="md:h-90 
+    sm:h-48
+    xs:h-48
     bg-local bg-cover rounded-3xl cursor-pointer 
     shadow-inner-3 filter hover:brightness-110
     transition duration-700 delay-5 ease-in-out 
@@ -35,3 +41,6 @@
     </div>
   </div>
 </div>
+{#if view}
+  <Tour {tour} closeFunction={() => (view = false)} />
+{/if}

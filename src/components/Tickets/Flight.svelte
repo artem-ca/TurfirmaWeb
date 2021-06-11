@@ -7,6 +7,8 @@
     flight;
 
   const { currencies, locations } = $dictionaries;
+
+  let background = "img/ural_arilines.png";
 </script>
 
 <!-- <div class="mt-18">
@@ -28,8 +30,12 @@
         flex cursor-pointer relative"
 >
   <div class="flex h-full items-center">
-    <div class="bg-red-500 mx-7 rounded-md ">
-      <div class="p-8 text-center text-strange-black">Logo</div>
+    <div
+      class="bg-red-500 mx-7  rounded-md 
+     bg-local bg-cover"
+      style="background-image: url('{background}')"
+    >
+      <div class="p-8 text-center text-transparent">logo</div>
     </div>
   </div>
 

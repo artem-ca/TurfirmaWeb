@@ -1,8 +1,10 @@
 <script>
-  import { HomeTourCard } from "../Tours";
+  import { Link } from "svelte-routing";
+
   import { Collection } from "sveltefire";
-  // import Tours from "src/routes/Tours.svelte";
-  import Tour from "./Tour.svelte";
+
+  import { HomeTourCard, Tour } from "../Tours";
+  import { Tours } from "../../routes";
 </script>
 
 <div
@@ -20,8 +22,5 @@
         {/if}
       {/each}
     </Collection>
-    <!-- <div><HomeTourCard /></div>
-    <div><HomeTourCard /></div>
-    <div><HomeTourCard /></div> -->
   </div>
 </div>

@@ -1,10 +1,16 @@
 <script>
-  let img = "img/kolugljufur_iceland.jpg";
+  import { Tour } from "../Tours";
+
   export let tour;
+
+  let view = false;
+
+  let img = "img/kolugljufur_iceland.jpg";
 </script>
 
 <div
-  class="flex flex-row  w-75 h-47.5 m-auto cursor-pointer bg-transparent relative "
+  class="flex flex-row m-auto cursor-pointer bg-transparent relative"
+  on:click={() => (view = true)}
 >
   <div
     class="w-75 h-47.5 bg-strange-gray rounded-4xl
@@ -39,3 +45,6 @@
     </div>
   </div>
 </div>
+{#if view}
+  <Tour {tour} closeFunction={() => (view = false)} />
+{/if}
