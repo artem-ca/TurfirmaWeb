@@ -98,6 +98,7 @@ module.exports = {
       margin: {
         18: '4.5rem',
         19: '4.75rem',
+        22: '5.5rem',
         25: '6.25rem',
         26.5: '6.625rem',
         30: '7.5rem',
@@ -107,6 +108,7 @@ module.exports = {
       },
 
       padding: {
+        22: '5.5rem',
         58: '14.5rem',
         68: '17rem',
         70: '17.5rem',
@@ -115,6 +117,7 @@ module.exports = {
       width: {
         18: '4.5rem',
         19: '4.75rem',
+        22: '5.5rem',
         30: '7.5rem',
         34: '8.5rem',
         44: '11rem',
@@ -141,6 +144,7 @@ module.exports = {
 
       height: {
         19: '4.75rem',
+        22: '5.5rem',
         25: '25rem',
         34: '8.5rem',
         44: '11rem',
@@ -167,6 +171,7 @@ module.exports = {
 
       minWidth: {
         19: '4.75rem',
+        22: '5.5rem',
         25: '6.25rem',
         34: '8.5rem',
         44: '11rem',

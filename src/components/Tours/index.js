@@ -6,5 +6,8 @@ import TourSearch from './TourSearch.svelte'
 import TourCard from './TourCard.svelte'
 import ToursList from './ToursList.svelte'
 import Tour from './Tour.svelte'
+import TourBook from './TourBook.svelte'
 
-export {HomeTourCard, ToursLine, OtherTourCard, OtherTours, TourSearch, TourCard, ToursList, Tour, }
+
+
+export {HomeTourCard, ToursLine, OtherTourCard, OtherTours, TourSearch, TourCard, ToursList, Tour, TourBook, }

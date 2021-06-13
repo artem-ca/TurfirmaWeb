@@ -1,11 +1,12 @@
 <script>
-  import { getContext } from "svelte";
+  import { getContext } from "svelte"
 
-  import { Tour } from "./";
-  import { dest } from "../store.js";
+  import { FirebaseApp, Collection, Doc, StorageRef } from "sveltefire"
 
-  export let tour;
-  export let closeFunction;
+  import { Tour } from "./"
+
+  export let tour
+  // export let closeFunction
 
   // let emptyTour = {
   //   id: "",
@@ -17,12 +18,13 @@
   //   hotel: "",
   // };
 
-  let background = "img/mayak_zakat.jpg";
+  let background = "img/mayak_zakat.jpg"
+  let path = "gs://turfirma-777.appspot.com/images/mayak_vecher.webp"
 
-  let view = false;
+  let view = false
 
-  const app = getContext("firebase").getFirebase();
-  const firestore = app.firestore();
+  const app = getContext("firebase").getFirebase()
+  const firestore = app.firestore()
 </script>
 
 <div
@@ -35,9 +37,21 @@
   on:click={() => (view = true)}
 >
   <div
-    class="w-44 h-55 mt-1 absolute rounded-xl bg-local bg-cover shadow-xl"
+    class="p-22 h-55 mt-1 absolute rounded-xl bg-local bg-cover shadow-xl"
     style="background-image: url('{background}')"
   />
+  <!-- 
+  <StorageRef {path} let:downloadURL let:ref={path} meta let:metadata>
+    <img
+      class="p-22 h-55 mt-1 absolute rounded-xl shadow-xl "
+      src={downloadURL}
+      alt="img"
+    />
+
+    <div slot="loading">Loading...</div>
+
+    <div slot="fallback">Error</div>
+  </StorageRef> -->
 
   <div class="w-92.5 h-55 bg-dark-gray ml-auto mt-auto rounded-2xl">
     <div class="pl-40 pt-2 absolute text-base">

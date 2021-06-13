@@ -1,10 +1,17 @@
 <script>
-  export let tour;
-  export let closeFunction;
+  import { TourBook } from "../Tours"
+  import { onMount } from "svelte"
+  import { FlightList, getFlights } from "../Tickets"
+  import { flights } from "../store"
 
-  let files;
+  export let tour
+  export let closeFunction
 
+  let view = false
+
+  // FIXME add iata to tour creation
   let {
+    iata,
     id,
     name,
     area,
@@ -16,17 +23,12 @@
     rating,
     visa,
     description,
-  } = tour;
+  } = tour
 
-  $: if (files) {
-    // Переменная `files` будет типа `FileList`, а не массивом:
-    // https://developer.mozilla.org/ru/docs/Web/API/FileList
-    console.log(files);
-
-    for (const file of files) {
-      console.log(`${file.name}: ${file.size} байт(а)`);
-    }
-  }
+  //DESCRIPTION getFlights = async (origin, destination, departureDate, arrivalDate, adults)
+  onMount(async () => {
+    await getFlights("SVX", iata, new Date(), new Date(), 1)
+  })
 
   // document.getElementById('content').innerHTML =
   //     marked('# Marked in the browser\n\nRendered by **marked**.');
@@ -139,11 +141,15 @@
           </div>
         </div>
       </div>
+
+      <FlightList />
+
       <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
         <button
           type="button"
           class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 
           bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 active:bg-green-600 sm:ml-3 sm:w-auto sm:text-sm"
+          on:click={() => (view = true)}
         >
           Забронировать
         </button>
@@ -158,3 +164,6 @@
     </div>
   </div>
 </div>
+{#if view}
+  <TourBook {tour} closeFunction={() => (view = false)} />
+{/if}

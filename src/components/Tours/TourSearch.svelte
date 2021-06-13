@@ -1,124 +1,59 @@
 <script>
-  // @ts-nocheck
+  import { Collection } from "sveltefire"
+  import { filteredTours } from "../store.js"
 
-  import { config } from "../config.js";
-  import {
-    access_token,
-    expiration,
-    flights,
-    dictionaries,
-    dest,
-  } from "../store.js";
-  import DatePicker from "svelte-calendar";
+  const SEARCH_TIMEOUT = 1000
+  const DEBUG = true
 
-  import { createEventDispatcher } from "svelte";
-  import { set_input_value } from "svelte/internal";
+  DEBUG && console.log("=== TOURSEARCH: store updated ", $filteredTours)
 
-  const dispatch = createEventDispatcher();
-
-  const getToken = async () => {
-    let current_time = new Date().getTime();
-
-    if (!$access_token || new Date($expiration).getTime() < current_time) {
-      console.log("=== getToken(): getting new access_token");
-
-      let response = await fetch(
-        `https://test.api.amadeus.com/v1/security/oauth2/token`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body: `grant_type=client_credentials&client_id=${config.client_id}&client_secret=${config.client_secret}`,
-        }
-      );
-      let json = await response.json();
-
-      let new_expiration = current_time + json.expires_in * 1000;
-
-      access_token.set(json.access_token);
-      expiration.set(new_expiration.toString());
-    }
-    return $access_token;
-  };
-
-  const getFlights = async (origin, price) => {
-    console.log("=== getFlights(): origin = ", origin);
-    let access_token = await getToken();
-
-    let response = await fetch(
-      `https://test.api.amadeus.com/v1/shopping/flight-destinations?origin=${origin}&maxPrice=${price}&departureDate=${formatDate(
-        departureDate
-      )}&duration=${
-        Math.floor(
-          Math.abs(
-            (arrivalDate.getTime() - departureDate.getTime()) / 1000 / 3600 / 24
-          )
-        ) + 1
-      }`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-      }
-    );
-
-    function getTours() {
-      let data = json.data;
-      dest.set([...data]);
-    }
-
-    let json = await response.json();
-    console.log(json);
-    // FIXME: проверять статус и наличие data
-    let data = json.data;
-
-    flights.set([...data]);
-    dictionaries.set(json.dictionaries);
-  };
-
-  // TODO: выводить доступные аэропорты
-  const origins = ["PAR", "MAD"];
-  const destinations = ["PAR", "MAD"];
-  const passengers = [1, 2, 3, 4, 5, 6];
-  const nights = [1, 2, 4, 6, 8, 10];
-
-  let selectedOrigin = "";
-  let selectedDest = "";
-  let selectedPassenger = passengers[0];
-  let selectedNights = nights[0];
-  let price = 0;
-
-  // document.querySelector("#elastic").oninput = function () {
-  //   let val = this.value.trim();
-  //   let elasticCards = document.querySelector();
-  // };
-
-  // ****** Dates Selection ***********
-  function formatDate(date) {
-    var d = new Date(date),
-      month = "" + (d.getMonth() + 1),
-      day = "" + d.getDate(),
-      year = d.getFullYear();
-
-    if (month.length < 2) month = "0" + month;
-    if (day.length < 2) day = "0" + day;
-
-    return [day, month, year].join(".");
+  //TODO withConverter сократить данные
+  const tourConverter = {
+    fromFirestore: function ({ area, city, country, hotel, name }) {
+      return { area, city, country, hotel, name }
+    },
   }
 
-  let departureDate = new Date();
-  let arrivalDate = new Date();
-  // maxDate: (function(){
-  //   var date = new Date();
-  //   date.setDate(date.getDate() + 10);
-  //   return date;
-  // })
-  let arrivalChosen = false;
+  function filterTours(keyword, tours) {
+    return tours.filter((element) => {
+      const k = keyword.toLowerCase()
+      // console.log()
+      return (
+        element.area.toLowerCase().includes(k) ||
+        element.city.toLowerCase().includes(k) ||
+        element.country.toLowerCase().includes(k) ||
+        element.hotel.toLowerCase().includes(k) ||
+        element.name.toLowerCase().includes(k)
+      )
+    })
+  }
+
+  let timer
+
+  function searchQuery(query, tours) {
+    window.clearTimeout(timer)
+    timer = window.setTimeout(function () {
+      const results = filterTours(query, tours)
+      filteredTours.set([...results])
+      DEBUG && console.log("=== TOURSEARCH: store", $filteredTours)
+    }, SEARCH_TIMEOUT)
+  }
+
+  let query = ""
 </script>
 
-<div class="w-full md:h-20 sm:h-82 m-auto pt-1.5 bg-dark-gray text-dark-gray">
+<Collection path={"Tours"} let:data={tours}>
+  <div class="pt-16">
+    SEARCH
+    <input
+      class="border-2 rounded"
+      bind:value={query}
+      on:input={() => searchQuery(query, tours)}
+    />
+  </div>
+</Collection>
+
+<!-- <div class="w-full md:h-20 sm:h-82 m-auto pt-1.5 bg-dark-gray text-dark-gray">
   <div class="md:max-w-screen-xl md:flex m-auto pt-1 ">
     <div class="md:flex md:w-full mx-5 ">
       <div
@@ -134,13 +69,13 @@
           class="text-main-input placeholder-gray-400 placeholder-opacity-75 w-full  h-14 px-3.5 rounded-lg"
           placeholder="Куда"
           bind:value={selectedDest}
-        />
+        /> -->
 
-        <!-- TODO: 180 дней ограничение -->
-        <!-- FIXME доделать стилизацию -->
-        <!-- Непонятно как стилизовать DatePicker -->
+<!-- TODO: 180 дней ограничение -->
+<!-- FIXME доделать стилизацию -->
+<!-- Непонятно как стилизовать DatePicker -->
 
-        <div class="flex flex-row space-x-2 justify-center">
+<!-- <div class="flex flex-row space-x-2 justify-center">
           <div class="">
             <DatePicker start={new Date()} bind:selected={departureDate}>
               <button class="bg-white md:w-56 sm:w-64 xs:w-34 h-14 rounded-lg ">
@@ -188,4 +123,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

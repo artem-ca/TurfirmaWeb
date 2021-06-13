@@ -1,29 +1,26 @@
 <script>
-  export let flight;
+  export let flight
 
-  import { dictionaries } from "../store.js";
+  import { dictionaries } from "../store.js"
+  import { orderFlight } from "./amadeus.js"
 
-  const { departureDate, destination, origin, price, returnDate, passangers } =
-    flight;
+  // const { departureDate, destination, origin, price, returnDate, passangers } =
+  //   flight
 
-  const { currencies, locations } = $dictionaries;
+  // const { currencies, locations } = $dictionaries
 
-  let background = "img/ural_arilines.png";
+  console.log("=== FLIGHT: ", flight)
+
+  let background = "img/ural_arilines.png"
 </script>
 
-<!-- <div class="mt-18">
+<div class="mt-18">
   <div class="card-title">Рейс</div>
-  <div class="">
-    {locations[origin]["detailedName"]} ({locations[origin]["subType"]}) => {locations[
-      destination
-    ]["detailedName"]} ({locations[destination]["subType"]})
-  </div>
-  <div class="">вылет в {departureDate}</div>
-  <div class="">обратно в {returnDate}</div>
-  <div><button>{price.total} {currencies["EUR"]}</button></div>
-</div> -->
+  <!-- <div>{flight.price.total} {flight.price.currency}</div> -->
+  <button on:click={orderFlight}>Забронировать</button>
+</div>
 
-<div
+<!-- <div
   class="sm:max-w-screen-md h-62.5
          m-auto my-10 rounded-3xl
         bg-dark-gray text-pale-white
@@ -94,4 +91,4 @@
       6666 Р
     </button>
   </div>
-</div>
+</div> -->
