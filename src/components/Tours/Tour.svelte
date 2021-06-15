@@ -2,10 +2,12 @@
   import { TourBook } from "../Tours"
   import { onMount } from "svelte"
   import { FlightList, getFlights } from "../Tickets"
-  import { flights } from "../store"
+  import { flights, tourists } from "../store"
 
   export let tour
   export let closeFunction
+
+  const euro = 87.27
 
   let view = false
 
@@ -139,10 +141,16 @@
               >
             </div>
           </div>
+
+          <div class="mt-10  font-montserrat space-y-3">
+            <h1 class=" font-semibold text-lg">Авиабилеты</h1>
+
+            <div class="h-72 overflow-y-auto">
+              <FlightList />
+            </div>
+          </div>
         </div>
       </div>
-
-      <FlightList />
 
       <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
         <button
@@ -151,7 +159,7 @@
           bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 active:bg-green-600 sm:ml-3 sm:w-auto sm:text-sm"
           on:click={() => (view = true)}
         >
-          Забронировать
+          Забронировать за {price + 100 * euro * $tourists}
         </button>
         <button
           type="button"

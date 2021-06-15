@@ -1,6 +1,8 @@
 <script>
   import { Collection } from "sveltefire"
-  import { filteredTours } from "../store.js"
+  import DatePicker from "svelte-calendar"
+  import { bind } from "svelte/internal"
+  import { tourists, passengers, nights, filteredTours } from "../store.js"
 
   const SEARCH_TIMEOUT = 1000
   const DEBUG = true
@@ -39,10 +41,48 @@
     }, SEARCH_TIMEOUT)
   }
 
+  function formatDate(date) {
+    var d = new Date(date),
+      month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
+      year = d.getFullYear()
+
+    if (month.length < 2) month = "0" + month
+    if (day.length < 2) day = "0" + day
+
+    return [day, month, year].join(".")
+  }
+
   let query = ""
+
+  const touristsList = [
+    { value: 1, text: "1 турист" },
+    { value: 2, text: "2 туристa" },
+    { value: 3, text: "3 туристa" },
+    { value: 4, text: "4 туристa" },
+    { value: 5, text: "5 туристов" },
+    { value: 6, text: "6 туристов" },
+  ]
+  const nightsList = [
+    { value: 1, text: "1 ночь" },
+    { value: 2, text: "2 ночи" },
+    { value: 3, text: "3 ночи" },
+    { value: 4, text: "4 ночи" },
+    { value: 5, text: "5 ночей" },
+    { value: 6, text: "6 ночей" },
+  ]
+
+  let selectedOrigin = "Екатеринбург"
+  let selectedDest = ""
+  let selectedPassenger = touristsList[0]
+  let selectedNights = nightsList[0]
+  let price = 0
+
+  let departureDate = new Date()
+  let arrivalDate = new Date()
 </script>
 
-<Collection path={"Tours"} let:data={tours}>
+<!-- <Collection path={"Tours"} let:data={tours}>
   <div class="pt-16">
     SEARCH
     <input
@@ -51,9 +91,9 @@
       on:input={() => searchQuery(query, tours)}
     />
   </div>
-</Collection>
+</Collection> -->
 
-<!-- <div class="w-full md:h-20 sm:h-82 m-auto pt-1.5 bg-dark-gray text-dark-gray">
+<div class="w-full md:h-20 sm:h-82 m-auto pt-1.5 bg-dark-gray text-dark-gray">
   <div class="md:max-w-screen-xl md:flex m-auto pt-1 ">
     <div class="md:flex md:w-full mx-5 ">
       <div
@@ -64,20 +104,22 @@
           placeholder="Откуда"
           bind:value={selectedOrigin}
         />
+        <Collection path={"Tours"} let:data={tours}>
+          <input
+            class="text-main-input placeholder-gray-400 placeholder-opacity-75 w-full  h-14 px-3.5 rounded-lg"
+            placeholder="Куда"
+            bind:value={query}
+            on:input={() => searchQuery(query, tours)}
+          />
+        </Collection>
 
-        <input
-          class="text-main-input placeholder-gray-400 placeholder-opacity-75 w-full  h-14 px-3.5 rounded-lg"
-          placeholder="Куда"
-          bind:value={selectedDest}
-        /> -->
+        <!-- TODO: 180 дней ограничение -->
+        <!-- FIXME доделать стилизацию -->
+        <!-- Непонятно как стилизовать DatePicker -->
 
-<!-- TODO: 180 дней ограничение -->
-<!-- FIXME доделать стилизацию -->
-<!-- Непонятно как стилизовать DatePicker -->
-
-<!-- <div class="flex flex-row space-x-2 justify-center">
+        <div class="flex flex-row space-x-2 justify-center">
           <div class="">
-            <DatePicker start={new Date()} bind:selected={departureDate}>
+            <DatePicker start={new Date()}>
               <button class="bg-white md:w-56 sm:w-64 xs:w-34 h-14 rounded-lg ">
                 {formatDate(departureDate)}
               </button>
@@ -87,27 +129,22 @@
 
         <select
           class="text-main-input w-full h-14 p-3.5 rounded-lg cursor-pointer"
-          bind:value={selectedNights}
+          bind:value={$nights}
         >
-          {#each nights as night}
-            <option>
-              {night}
+          {#each nightsList as night}
+            <option value={night.value}>
+              {night.text}
             </option>
           {/each}
         </select>
 
         <select
           class="text-main-input w-full h-14 p-3.5 rounded-lg cursor-pointer"
-          bind:value={selectedPassenger}
+          bind:value={$tourists}
         >
-          {#each passengers as passenger}
-            <option>
-              {passenger}
-              {passenger <= 1
-                ? "пассажир"
-                : passenger <= 4
-                ? "пассажира"
-                : "пассажиров"}
+          {#each touristsList as tourist}
+            <option value={tourist.value}>
+              {tourist.text}
             </option>
           {/each}
         </select>
@@ -123,4 +160,4 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>

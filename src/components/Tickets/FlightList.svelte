@@ -4,7 +4,7 @@
 </script>
 
 <!-- TODO: количество пассажиров передавать для увеличения стоимости -->
-{console.log("=== FLIGHTLIST: ", $flights)}
+<!-- {console.log("=== FLIGHTLIST: ", $flights)} -->
 {#each $flights as flight (flight)}
   <Flight {flight} />
 {/each}

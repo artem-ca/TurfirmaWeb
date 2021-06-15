@@ -1,6 +1,11 @@
 <script>
-  import { getFlights } from "./amadeus"
   import DatePicker from "svelte-calendar"
+  import { getFlights } from "./amadeus"
+  import { flights, tourists } from "../store"
+
+  tourists.subscribe((value) => {
+    $tourists = value
+  })
 
   function formatDate(date) {
     var d = new Date(date),

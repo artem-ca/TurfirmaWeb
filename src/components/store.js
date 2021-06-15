@@ -16,6 +16,14 @@ export const flights = writable([])
 export const dictionaries = writable({ currencies: [], locations: [] })
 export const bookedFlights = writable([])
 
+// currency exchange rate
+export const rate = 87.5
+
+// search panel
+export const tourists = writable(1)
+export const passengers = writable(1)
+export const nights = writable(1)
+
 // filtered tours
 export const filteredTours = writable([])
 

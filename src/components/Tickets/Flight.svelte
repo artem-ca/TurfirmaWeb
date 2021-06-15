@@ -9,18 +9,28 @@
 
   // const { currencies, locations } = $dictionaries
 
+  let background = "img/ural_arilines.png"
+
   console.log("=== FLIGHT: ", flight)
 
-  let background = "img/ural_arilines.png"
+  // const requestURL = "http://www.cbr.ru/scripts/XML_daily.asp?"
+
+  // const getFlights = async () => {
+  //   let response = await fetch(requestURL, {
+  //     method: "GET",
+  //   })
+  //   let json = await response.json()
+  //   console.log(json)
+  // }
 </script>
 
-<div class="mt-18">
+<!-- <div class="mt-18">
   <div class="card-title">Рейс</div>
-  <!-- <div>{flight.price.total} {flight.price.currency}</div> -->
+  <div>{flight.price.total} {flight.price.currency}</div>
   <button on:click={orderFlight}>Забронировать</button>
-</div>
+</div> -->
 
-<!-- <div
+<div
   class="sm:max-w-screen-md h-62.5
          m-auto my-10 rounded-3xl
         bg-dark-gray text-pale-white
@@ -86,9 +96,9 @@
     <button
       class="m-7 p-2  rounded-md 
       text-xl font-display
-      bg-red-600 hover:bg-red-500 active:bg-red-400 "
+      bg-red-600 hover:bg-red-500 active:bg-red-400"
     >
-      6666 Р
+      € {flight.price.total}
     </button>
   </div>
-</div> -->
+</div>

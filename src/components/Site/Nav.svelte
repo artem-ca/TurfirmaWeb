@@ -1,10 +1,43 @@
 <script>
-  import { Link } from "svelte-routing";
+  import { Link } from "svelte-routing"
+
+  let foo = ""
 </script>
 
-<nav class="w-full md:h-13 z-50 m-auto bg-dark-gray text-pale-white fixed">
-  <div class="sm:max-w-screen-xl flex flex-row m-auto ">
-    <div class="w-1/4 px-5 py-1.5 m-auto ">
+<nav class="fixed w-full z-50 bg-dark-gray text-pale-white">
+  <div
+    class="max-w-screen-xl m-auto flex flex-row relative items-center justify-between"
+  >
+    <div class="sm:hidden ml-2 self-center">
+      <button
+        type="button"
+        class="inline-flex items-center justify-center p-2 rounded-md 
+      text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+      >
+        <span class="sr-only">Open main menu</span>
+        <svg
+          class="block h-6 w-6"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="px-5 py-1.5 m-auto flex-1 flex items-center justify-center flex-shrink-0
+      sm:items-stretch sm:justify-start"
+    >
       <Link to="/">
         <span class="cursor-pointer focus:opacity-75 font-display text-3xl"
           >Turfirma</span
@@ -18,14 +51,16 @@
           class="md:w-34 sm:min-w-16 h-8 
               border-pale-white sm:rounded-l-xl border  
               hover:bg-pale-white hover:text-dark-gray 
-              focus:bg-pale-white focus:text-dark-gray">Туры</button
+              focus:bg-pale-white focus:text-dark-gray ">Туры</button
         >
       </Link>
 
       <Link to="tickets">
         <button
-          class="md:w-34 sm:min-w-16 h-8 border  border-pale-white hover:bg-pale-white hover:text-dark-gray focus:bg-pale-white focus:text-dark-gray rounded-r-xl"
-          >Авиабилеты</button
+          class="md:w-34 sm:min-w-16 h-8 border  
+          border-pale-white hover:bg-pale-white 
+          hover:text-dark-gray focus:bg-pale-white 
+          focus:text-dark-gray rounded-r-xl">Авиабилеты</button
         >
       </Link>
     </div>
@@ -44,12 +79,12 @@
       </Link>
 
       <Link to="signin">
-        <button class="w-16 hover:opacity-80 border rounded-md">Вход</button>
+        <button class="px-3 hover:opacity-80 border rounded-md">Вход</button>
       </Link>
 
       <Link to="signup">
         <button
-          class="w-28 text-dark-gray bg-pale-white hover:opacity-90 border rounded-md"
+          class="px-3 text-dark-gray bg-pale-white hover:opacity-90 border rounded-md"
           >Регистрация</button
         >
       </Link>
@@ -100,3 +135,6 @@
   <Route path="/"><Home/></Route>
 </div> -->
 </nav>
+
+<style>
+</style>

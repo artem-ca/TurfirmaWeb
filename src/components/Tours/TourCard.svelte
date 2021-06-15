@@ -4,6 +4,9 @@
   import { FirebaseApp, Collection, Doc, StorageRef } from "sveltefire"
 
   import { Tour } from "./"
+  import { Flight } from "../Tickets"
+
+  import { tourists, passengers, nights, flights } from "../store.js"
 
   export let tour
   // export let closeFunction
@@ -17,6 +20,8 @@
   //   area: "",
   //   hotel: "",
   // };
+
+  const rate = 87.5
 
   let background = "img/mayak_zakat.jpg"
   let path = "gs://turfirma-777.appspot.com/images/mayak_vecher.webp"
@@ -53,7 +58,7 @@
     <div slot="fallback">Error</div>
   </StorageRef> -->
 
-  <div class="w-92.5 h-55 bg-dark-gray ml-auto mt-auto rounded-2xl">
+  <div class="w-92.5 h-55 bg-dark-gray ml-auto mt-auto rounded-2xl ">
     <div class="pl-40 pt-2 absolute text-base">
       <div class="-space-y-0.5">
         <span class="font-semibold">{tour.name}</span>
@@ -150,15 +155,17 @@
               d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
             />
           </svg>
-          <span class="ml-2">1</span>
+          <span class="ml-2">{$tourists}</span>
         </div>
         <div class="">
           <div>Ночей</div>
-          <div>7</div>
+          <div>{$nights}</div>
         </div>
         <div class="">
           <div>Цена от</div>
-          <div>₽ {tour.price}</div>
+          <div>
+            ₽ {tour.price * $tourists * $nights}
+          </div>
         </div>
       </div>
     </div>
