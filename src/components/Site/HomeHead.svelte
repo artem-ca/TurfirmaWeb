@@ -1,18 +1,18 @@
 <script>
-  import { Link } from "svelte-routing";
+  import { Link } from "svelte-routing"
 
-  import { Collection } from "sveltefire";
+  import { Collection } from "sveltefire"
 
-  import { ApplicationForm } from "../Site";
-  import { Tour, ToursLine } from "../Tours";
+  import { ApplicationForm } from "../Site"
+  import { Tour, ToursLine } from "../Tours"
 
-  export let tour;
+  export let tour
 
-  let view = false;
+  let view = false
 
-  let showForm = false;
+  let showForm = false
 
-  let background = "img/mayak_vecher.webp";
+  let background = "img/mayak_vecher.webp"
 </script>
 
 <div
@@ -68,7 +68,7 @@
         </div>
 
         {#if showForm}
-          <ApplicationForm />
+          <ApplicationForm closeFunction={() => (showForm = false)} />
         {/if}
       </div>
     </div>

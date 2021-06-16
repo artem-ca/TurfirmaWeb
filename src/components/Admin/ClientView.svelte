@@ -1,12 +1,12 @@
 <script>
-  import { getContext } from "svelte";
-  export let client;
-  export let closeFunction;
+  import { getContext } from "svelte"
+  export let client
+  export let closeFunction
 
-  const DEBUG = true;
+  const DEBUG = true
 
-  const app = getContext("firebase").getFirebase();
-  const firestore = app.firestore();
+  const app = getContext("firebase").getFirebase()
+  const firestore = app.firestore()
 
   let {
     uid,
@@ -21,15 +21,14 @@
     interPassport,
     birthday,
     regDate,
-  } = client;
-  DEBUG && console.log(client);
+  } = client
+  DEBUG && console.log(client)
 
-  let files;
+  let files
 
   function addClient() {
-    let clientsRef = firestore.collection(`/Users`);
+    let clientsRef = firestore.collection(`/Users`)
     let data = {
-      uid,
       id,
       email,
       name,
@@ -41,19 +40,18 @@
       interPassport,
       birthday,
       regDate,
-    };
+    }
 
     clientsRef
       .add(data)
       .then((docRef) => console.log("=== ClientView: client added ", docRef.id))
       .catch((error) =>
         console.error("=== ClientView: client NOT added ", error)
-      );
+      )
   }
   function updateClient() {
-    let clientRef = firestore.doc(`/Users/${id}`);
+    let clientRef = firestore.doc(`/Users/${id}`)
     let data = {
-      uid,
       id,
       email,
       name,
@@ -65,23 +63,23 @@
       interPassport,
       birthday,
       regDate,
-    };
+    }
 
     clientRef
       .update(data)
       .then(() => console.log("=== ClientView: client added ", id))
       .catch((error) =>
         console.error("=== ClientView: client NOT added ", error)
-      );
+      )
   }
 
   $: if (files) {
     // Переменная `files` будет типа `FileList`, а не массивом:
     // https://developer.mozilla.org/ru/docs/Web/API/FileList
-    console.log(files);
+    console.log(files)
 
     for (const file of files) {
-      console.log(`${file.name}: ${file.size} байт(а)`);
+      console.log(`${file.name}: ${file.size} байт(а)`)
     }
   }
 </script>

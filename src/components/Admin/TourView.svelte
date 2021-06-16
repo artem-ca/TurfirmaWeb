@@ -1,77 +1,81 @@
 <script>
-  import { getContext } from "svelte";
-  export let tour;
-  export let closeFunction;
+  import { getContext } from "svelte"
+  export let tour
+  export let closeFunction
 
-  const DEBUG = true;
+  const DEBUG = true
 
-  const app = getContext("firebase").getFirebase();
-  const firestore = app.firestore();
+  const app = getContext("firebase").getFirebase()
+  const firestore = app.firestore()
 
-  let files;
+  let files
 
   let {
     id,
-    name,
-    country,
-    city,
     area,
+    city,
+    country,
+    description,
     hotel,
     hotelLink,
-    visa,
-    description,
+    iata,
+    name,
+    price,
     rating,
-  } = tour;
-  DEBUG && console.log(tour);
+    visa,
+  } = tour
+  DEBUG && console.log(tour)
 
   function addTour() {
-    let toursRef = firestore.collection(`/Tours`);
+    let toursRef = firestore.collection(`/Tours`)
     let data = {
-      name,
-      country,
-      city,
       area,
+      city,
+      country,
+      description,
       hotel,
       hotelLink,
-      visa,
-      description,
+      iata,
+      name,
+      price,
       rating,
-    };
+      visa,
+    }
 
     toursRef
       .add(data)
       .then((docRef) => console.log("=== TourView: tour added ", docRef.id))
-      .catch((error) => console.error("=== TourView: tour NOT added ", error));
+      .catch((error) => console.error("=== TourView: tour NOT added ", error))
   }
   function updateTour() {
-    let tourRef = firestore.doc(`/Tours/${id}`);
+    let tourRef = firestore.doc(`/Tours/${id}`)
     let data = {
-      name,
-      country,
-      city,
       area,
+      city,
+      country,
+      description,
       hotel,
       hotelLink,
-      visa,
-      description,
+      iata,
+      name,
+      price,
       rating,
-    };
+      visa,
+    }
 
     tourRef
       .update(data)
       .then(() => console.log("=== TourView: tour updated ", id))
-      .catch((error) =>
-        console.error("=== TourView: tour NOT updated ", error)
-      );
+      .catch((error) => console.error("=== TourView: tour NOT updated ", error))
   }
 
   $: if (files) {
     // Переменная `files` будет типа `FileList`, а не массивом:
     // https://developer.mozilla.org/ru/docs/Web/API/FileList
-    console.log(files);
+    console.log(files)
 
     for (const file of files) {
-      console.log(`${file.name}: ${file.size} байт(а)`);
+      console.log(`${file.name}: ${file.size} байт(а)`)
     }
   }
 </script>
@@ -118,22 +122,12 @@
               </label>
 
               <div class="flex flex-col">
-                <label for="TourAvatar">Загрузить главное фото:</label>
+                <label for="TourAvatar">Загрузить фото:</label>
                 <input
                   accept="image/png, image/jpeg"
                   bind:files
                   id="TourAvatar"
                   name="tourAvatar"
-                  type="file"
-                />
-
-                <label for="many">Загрузить все фото:</label>
-                <input
-                  accept="image/png, image/jpeg"
-                  bind:files
-                  id="TourPhotos"
-                  name="tourPhotos"
-                  multiple
                   type="file"
                 />
               </div>
@@ -169,7 +163,7 @@
                 name="country"
                 required
                 class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-strange-black dark:text-gray-400"
-                placeholder="Страна"
+                placeholder="Россия"
               />
             </div>
 
@@ -186,7 +180,7 @@
                 name="area"
                 required
                 class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-strange-black dark:text-gray-400"
-                placeholder=""
+                placeholder="Урал"
               />
             </div>
 
@@ -203,7 +197,7 @@
                 name="city"
                 required
                 class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-strange-black dark:text-gray-400"
-                placeholder=""
+                placeholder="Екатеринбург"
               />
             </div>
 
@@ -220,7 +214,7 @@
                 name="hotel"
                 required
                 class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-strange-black dark:text-gray-400"
-                placeholder=""
+                placeholder="Плаза"
               />
             </div>
 
@@ -243,21 +237,22 @@
 
             <div class="mt-2 flex flex-col">
               <label
-                for="Hotel"
+                for="Iata"
                 class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
-                >Виза</label
-              >
-
-              <div class="flex flex-row space-x-5 justify-center text-lg">
-                <label>
-                  <input type="radio" bind:value={visa} />
-                  c визой
-                </label>
-                <label>
-                  <input type="radio" bind:value={visa} />
-                  без визы
-                </label>
-              </div>
+                >IATA-код
+              </label>
+              <input
+                bind:value={iata}
+                type="iata"
+                maxlength="3"
+                style="text-transform: uppercase;"
+                id="Iata"
+                name="iata"
+                required
+                pattern="[A-Z]"
+                class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-strange-black dark:text-gray-400"
+                placeholder="SVX"
+              />
             </div>
 
             <div class="mt-2 flex flex-col">
@@ -283,15 +278,51 @@
                 class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
                 >Описание
               </label>
-              <input
+              <textarea
                 bind:value={description}
+                class=" bg-pale-white text-strange-gray border resize-y max-h-52 rounded-md"
                 type="text"
                 id="Description"
                 name="description"
                 required
-                class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-strange-black dark:text-gray-400"
                 placeholder=""
               />
+            </div>
+
+            <div class="mt-2 flex flex-col">
+              <label
+                for="Price"
+                class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
+                >Стоимость за ночь
+              </label>
+              <input
+                bind:value={price}
+                type="price"
+                id="Price"
+                name="price"
+                required
+                class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-strange-black dark:text-gray-400"
+                placeholder="1000"
+              />
+            </div>
+
+            <div class="mt-2 flex flex-col">
+              <label
+                for="Hotel"
+                class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
+                >Виза</label
+              >
+
+              <div class="flex flex-row space-x-5 justify-center text-lg">
+                <label>
+                  <input type="radio" bind:value={visa} />
+                  c визой
+                </label>
+                <label>
+                  <input type="radio" bind:value={visa} />
+                  без визы
+                </label>
+              </div>
             </div>
           </div>
         </div>

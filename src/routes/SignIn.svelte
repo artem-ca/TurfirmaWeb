@@ -1,7 +1,63 @@
 <script>
-  import { Link } from "svelte-routing";
+  import { Link, navigate } from "svelte-routing"
 
-  let background = "img/mayak_zakat.jpg";
+  import { User } from "sveltefire"
+  import "firebase/auth"
+  import "firebase/firestore"
+  import { getContext } from "svelte"
+  import { userData } from "../components/store"
+
+  let background = "img/mayak_zakat.jpg"
+
+  const app = getContext("firebase").getFirebase()
+  const firestore = app.firestore()
+  const auth = app.auth()
+
+  let email, password, homeButton
+
+  const DEBUG = true
+
+  const storeUser = (event) => {
+    const user = event.detail.user
+
+    console.log("Юзер авторизовался", user)
+    if (user && !user.lastLoginAt) {
+      // user authorized and info came from firebase server
+      const { uid, email } = user
+
+      let userRef = firestore.doc(`/Users/${uid}`)
+      userRef.get().then((doc) => {
+        DEBUG && console.log("DEBUG: requesting user data")
+
+        if (doc && doc.exists) {
+          // user is old
+          let data = doc.data()
+          userData.set(data)
+
+          DEBUG && console.log("user is old", $userData)
+          homeButton.click()
+          // navigate('/', { replace: true })
+        } else {
+          // user is new
+          let data = { uid, email }
+
+          userRef.set(data).then(() => {
+            userData.set(data)
+
+            DEBUG && console.log("user is new", $userData)
+            homeButton.click()
+            // navigate('/', { replace: true })
+          })
+        }
+      })
+    }
+  }
+
+  function createUser(event) {
+    // TODO SIGNUP проверить заполненность полей и совпадение паролей
+    event.preventDefault()
+    auth.createUserWithEmailAndPassword(email, password)
+  }
 </script>
 
 <section
@@ -26,6 +82,7 @@
             <span class="text-lg text-pale-white font-bold"
               >Вход в учетную запись</span
             >
+
             <h2
               class="mt-8 mb-12 md:text-5xl xs:text-3xl font-bold font-heading text-white"
             >
@@ -42,12 +99,26 @@
             class="lg:max-w-lg mx-auto px-6 lg:px-20 py-12 lg:py-24 bg-strange-gray rounded-2xl"
           >
             <form action="#">
+              <!-- <button
+                class="text-white"
+                on:click={() => navigate("profile", { replace: true })}
+                >ПРОФИЛЬ</button
+              >
+              <Link class="text-white" to="/"
+                ><span bind:this={homeButton}> ДОМОЙ </span>
+              </Link>
+              <button class="text-white" on:click={() => homeButton.click()}
+                >_ДОМОЙ</button
+              > -->
               <h3 class="mb-10 text-2xl text-white font-bold font-heading">
                 Вход в аккаунт
+                <Link to="signup">
+                  <div class="text-white text-base font-thin hover:opacity-80">
+                    или зарегистрируйтесь
+                  </div>
+                </Link>
               </h3>
-              <Link to="signup"
-                ><span class="text-white"> или зарегистрируйтесь </span>
-              </Link>
+
               <div class="flex items-center pl-6 mb-3 bg-white rounded-2xl">
                 <span class="inline-block pr-3 border-r border-gray-50">
                   <svg
@@ -97,7 +168,7 @@
 
               <button
                 class="py-4 mt-10 w-full bg-red-600 hover:bg-red-500 active:bg-red-400 text-strange-black font-bold rounded-2xl transition duration-200"
-                >Начнем</button
+                >Начать</button
               >
             </form>
           </div>

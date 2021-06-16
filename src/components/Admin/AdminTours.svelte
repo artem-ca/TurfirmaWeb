@@ -1,12 +1,12 @@
 <script>
-  import { AdminNav, TourView } from "../Admin";
+  import { AdminNav, TourView } from "../Admin"
 
-  let showForm = false;
+  let showForm = false
 </script>
 
-<div class="pt-12">
+<div class="pt-12 ">
   <AdminNav />
-  <div class="sm:max-w-screen-xl m-auto px-10 pb-20">
+  <div class="sm:max-w-screen-xl m-auto px-10 pb-20 ">
     <!-- This example requires Tailwind CSS v2.0+ -->
     <div class="flex flex-col">
       <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">

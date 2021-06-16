@@ -66,7 +66,7 @@
     </div>
 
     <div class="w-1/4 flex items-center justify-end mr-5 my-1.5 space-x-3">
-      <Link to="admin">
+      <Link to="admin/tours">
         <button class="w-10">admin</button>
       </Link>
 

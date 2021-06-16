@@ -1,8 +1,8 @@
 <script>
-  import { Link } from "svelte-routing";
+  import { Link } from "svelte-routing"
 </script>
 
-<div class="w-full bg-strange-black text-pale-white mt-40">
+<div class="w-full bg-strange-black text-pale-white ">
   <div class="sm:max-w-screen-xl flex flex-row m-auto px-20 py-16">
     <div class="grid grid-cols-3 space-x-48 text-xl">
       <div class="text-pale-white text-3xl">
