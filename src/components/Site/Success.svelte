@@ -2,6 +2,9 @@
   import { getContext, createEventDispatcher, onDestroy } from "svelte"
 
   export let closeFunction
+
+  const app = getContext("firebase").getFirebase()
+  const firestore = app.firestore()
 </script>
 
 <div>
@@ -57,7 +60,7 @@
             class="bg-green-600 font-semibold text-white py-3 w-full rounded-b-md hover:bg-green-700 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all duration-300"
             on:click={closeFunction}
           >
-            Подтвердить
+            Класс
           </button>
         </div>
       </div>

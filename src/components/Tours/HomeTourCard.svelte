@@ -1,11 +1,11 @@
 <script>
-  import { Tour } from "../Tours";
+  import { Tour } from "../Tours"
 
-  export let tour;
+  export let tour
 
-  let view = false;
+  let view = false
 
-  let img = "img/kolugljufur_iceland.jpg";
+  let img = "img/kolugljufur_iceland.jpg"
 </script>
 
 <div
@@ -14,7 +14,7 @@
 >
   <div
     class="w-75 h-47.5 bg-strange-gray rounded-4xl
-          transition duration-500 delay-5 ease-in-out 
+          transition duration-300 delay-5 ease-in-out 
           transform hover:-translate-y-2 shadow-2xl"
   >
     <div

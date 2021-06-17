@@ -1,13 +1,13 @@
 <script>
-  import { AdminNav, ClientView, ClientCard } from "../../components/Admin";
-  import { Collection } from "sveltefire";
+  import { AdminNav, ClientView, ClientCard } from "../../components/Admin"
+  import { Collection } from "sveltefire"
 
   let emptyClient = {
     id: "",
     name: "",
-  };
+  }
 
-  let view = false;
+  let view = false
 </script>
 
 <div class="pt-12">
@@ -76,7 +76,7 @@
 
                   <div slot="loading">Loading...</div>
 
-                  <div slot="fallback">Unable to display comments...</div>
+                  <div slot="fallback">Unable to display...</div>
                 </Collection>
               </tbody>
             </table>

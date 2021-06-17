@@ -11,8 +11,7 @@
 
   let showModal = false
 
-  // let application
-  // let { description, email, name, phone } = application
+  // let application = { description, email, names, phone }
 
   // DEBUG && console.log(application)
 

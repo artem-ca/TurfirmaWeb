@@ -3,26 +3,26 @@
   // npm i marked
   // import marked from 'marked'
   // {@html marked(description)}
-  import { ClientView } from "./";
+  import { ClientView } from "./"
 
-  export let client;
+  export let client
 
-  import { getContext } from "svelte";
-  const app = getContext("firebase").getFirebase();
-  const firestore = app.firestore();
+  import { getContext } from "svelte"
+  const app = getContext("firebase").getFirebase()
+  const firestore = app.firestore()
 
   function deleteClient() {
-    let clientRef = firestore.doc(`/Users/${client.id}`);
+    let clientRef = firestore.doc(`/Users/${client.id}`)
 
     clientRef
       .delete()
       .then(() => console.log("=== ClientView: client deleted "))
       .catch((error) =>
         console.error("=== ClientView: client NOT deleted ", error)
-      );
+      )
   }
 
-  let view = false;
+  let view = false
 </script>
 
 <tr>
@@ -77,7 +77,7 @@
       href="#"
       class="text-indigo-600 hover:text-indigo-900"
       on:click={() => {
-        view = true;
+        view = true
       }}>Изменить</a
     >&nbsp;
     <a

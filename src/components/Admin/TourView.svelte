@@ -47,6 +47,7 @@
       .then((docRef) => console.log("=== TourView: tour added ", docRef.id))
       .catch((error) => console.error("=== TourView: tour NOT added ", error))
   }
+
   function updateTour() {
     let tourRef = firestore.doc(`/Tours/${id}`)
     let data = {

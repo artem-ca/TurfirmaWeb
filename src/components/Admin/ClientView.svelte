@@ -42,6 +42,8 @@
       regDate,
     }
 
+    regDate = new Date()
+
     clientsRef
       .add(data)
       .then((docRef) => console.log("=== ClientView: client added ", docRef.id))
@@ -86,7 +88,7 @@
 
 <!-- This example requires Tailwind CSS v2.0+ -->
 <div
-  class="fixed z-10 inset-0 overflow-y-auto"
+  class="fixed z-10 inset-0 overflow-y-auto mt-10"
   aria-labelledby="modal-title"
   role="dialog"
   aria-modal="true"
@@ -224,6 +226,57 @@
 
           <div class="mt-2 flex flex-col">
             <label
+              for="Birthday"
+              class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
+              >Дата рождения
+            </label>
+            <input
+              bind:value={birthday}
+              type="date"
+              id="Birthday"
+              name="birthday"
+              required
+              class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
+              placeholder="4507691152"
+            />
+          </div>
+
+          <div class="mt-2 flex flex-col">
+            <label
+              for="Passport"
+              class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
+              >Паспорт
+            </label>
+            <input
+              bind:value={passport}
+              type="text"
+              id="Passport"
+              name="passport"
+              required
+              class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
+              placeholder="4507691152"
+            />
+          </div>
+
+          <div class="mt-2 flex flex-col">
+            <label
+              for="InterPassport"
+              class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
+              >Загранпаспорт
+            </label>
+            <input
+              bind:value={interPassport}
+              type="text"
+              id="InterPassport"
+              name="interPassport"
+              required
+              class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
+              placeholder="520022196"
+            />
+          </div>
+
+          <div class="mt-2 flex flex-col">
+            <label
               for="Address"
               class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
               >Адрес
@@ -235,7 +288,7 @@
               name="address"
               required
               class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
-              placeholder="Отчество"
+              placeholder="г. Екатеринбург, ул. Первомаяская, д.73"
             />
           </div>
         </div>
