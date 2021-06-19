@@ -19,7 +19,7 @@
   >
     <div
       class="w-70 h-44 mx-auto mt-2 rounded-4xl bg-local bg-cover shadow-inner-2 "
-      style="background-image: url('{img}')"
+      style="background-image: url('{tour.imageURL}')"
     >
       <div
         class="w-34 ml-5 mt-25 text-pale-white absolute flex flex-row font-montserrat text-sm"

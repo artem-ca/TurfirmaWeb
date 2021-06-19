@@ -31,6 +31,7 @@
   }
 
   let timer
+  let date = new Date()
 
   function searchQuery(query, tours) {
     window.clearTimeout(timer)
@@ -119,13 +120,19 @@
 
         <div class="flex flex-row space-x-2 justify-center">
           <div class="">
-            <DatePicker start={new Date()}>
-              <button class="bg-white md:w-56 sm:w-64 xs:w-34 h-14 rounded-lg ">
+            <DatePicker start={new Date()} bind:selected={departureDate}>
+              <button
+                class="bg-white md:w-56 sm:w-64 xs:w-34 h-14 rounded-lg z-50"
+              >
                 {formatDate(departureDate)}
               </button>
             </DatePicker>
           </div>
         </div>
+
+        <!-- <div>
+          <input class="w-full h-full rounded-md cursor-pointer" type="date" />
+        </div> -->
 
         <select
           class="text-main-input w-full h-14 p-3.5 rounded-lg cursor-pointer"

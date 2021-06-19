@@ -1,32 +1,34 @@
 import AdminNav from './AdminNav.svelte'
-import AdminTours from './AdminTours.svelte'
-import AdminHotels from './AdminHotels.svelte'
-import AdminClients from './AdminClients.svelte'
-import AdminApplications from './AdminApplications.svelte'
-import AdminBooking from './AdminBooking.svelte'
-import Application from './Application.svelte'
-import Booking from './Booking.svelte'
-import TourView from './TourView.svelte'
-import ChangeHotel from './ChangeHotel.svelte'
+
+import ApplicationView from './ApplicationView.svelte'
+import ApplicationCard from './ApplicationCard.svelte'
+
+import BookingView from './BookingView.svelte'
+import BookCard from './BookCard.svelte'
+
 import ClientView from './ClientView.svelte'
-import Private from './ClientView.svelte'
-import TourCard from './TourCard.svelte'
 import ClientCard from './ClientCard.svelte'
+
+import TourView from './TourView.svelte'
+import TourCard from './TourCard.svelte'
+
+import Private from './ClientView.svelte'
 
 
 export {
     AdminNav,
-    AdminTours,
-    AdminHotels,
-    AdminClients,
-    AdminApplications,
-    AdminBooking,
-    Application,
-    Booking,
+
+    ApplicationView,
+    ApplicationCard,
+
+    BookingView,
+    BookCard,
+
     TourView,
-    ChangeHotel,
-    ClientView,
-    Private,
     TourCard,
-    ClientCard
+
+    ClientView,
+    ClientCard,
+
+    Private,
 }

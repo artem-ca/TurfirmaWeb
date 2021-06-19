@@ -3,10 +3,12 @@
   export let client
   export let closeFunction
 
-  const DEBUG = true
-
   const app = getContext("firebase").getFirebase()
   const firestore = app.firestore()
+
+  const DEBUG = true
+
+  let files
 
   let {
     uid,
@@ -23,8 +25,6 @@
     regDate,
   } = client
   DEBUG && console.log(client)
-
-  let files
 
   function addClient() {
     let clientsRef = firestore.collection(`/Users`)
@@ -51,6 +51,7 @@
         console.error("=== ClientView: client NOT added ", error)
       )
   }
+
   function updateClient() {
     let clientRef = firestore.doc(`/Users/${id}`)
     let data = {
@@ -99,6 +100,7 @@
     <div
       class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
       aria-hidden="true"
+      on:click={closeFunction}
     />
 
     <!-- This element is to trick the browser into centering the modal contents. -->
@@ -249,7 +251,8 @@
             </label>
             <input
               bind:value={passport}
-              type="text"
+              type="number"
+              maxlength="10"
               id="Passport"
               name="passport"
               required
@@ -266,7 +269,8 @@
             </label>
             <input
               bind:value={interPassport}
-              type="text"
+              type="number"
+              maxlength="9"
               id="InterPassport"
               name="interPassport"
               required
@@ -297,6 +301,7 @@
         {#if id === ""}
           <button
             on:click={addClient}
+            on:click={closeFunction}
             type="button"
             class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 active:bg-green-600 sm:ml-3 sm:w-auto sm:text-sm"
           >
@@ -305,6 +310,7 @@
         {:else}
           <button
             on:click={updateClient}
+            on:click={closeFunction}
             type="button"
             class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 active:bg-green-600 sm:ml-3 sm:w-auto sm:text-sm"
           >

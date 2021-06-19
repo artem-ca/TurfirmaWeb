@@ -13,6 +13,14 @@
   let showForm = false
 
   let background = "img/mayak_vecher.webp"
+
+  let emptyApplication = {
+    id: "",
+    description: "",
+    email: "",
+    name: "",
+    phone: "",
+  }
 </script>
 
 <div
@@ -68,7 +76,10 @@
         </div>
 
         {#if showForm}
-          <ApplicationForm closeFunction={() => (showForm = false)} />
+          <ApplicationForm
+            application={emptyApplication}
+            closeFunction={() => (showForm = false)}
+          />
         {/if}
       </div>
     </div>

@@ -1,28 +1,43 @@
 <script>
-  import { TourBook } from "../Tours"
   import { onMount } from "svelte"
+  import { FirebaseApp, Collection, Doc, StorageRef } from "sveltefire"
+  import { TourBook } from "../Tours"
   import { FlightList, getFlights } from "../Tickets"
-  import { flights, nights, tourists } from "../store"
+  import { flights, nights, tourists, ticketPrice } from "../store"
 
   export let tour
   export let closeFunction
 
   let view = false
 
-  // FIXME add iata to tour creation
+  let emptyBook = {
+    id: "",
+    email: "",
+    name: "",
+    lastName: "",
+    middleName: "",
+    phone: "",
+    address: "",
+    passport: "",
+    interPassport: "",
+    birthday: "",
+    tour: "",
+  }
+
   let {
-    iata,
     id,
-    name,
     area,
-    country,
     city,
+    country,
+    description,
     hotel,
     hotelLink,
+    iata,
+    imageURL,
+    name,
     price,
     rating,
     visa,
-    description,
   } = tour
 
   //DESCRIPTION getFlights = async (origin, destination, departureDate, arrivalDate, adults)
@@ -34,7 +49,6 @@
   //     marked('# Marked in the browser\n\nRendered by **marked**.');
 </script>
 
-<!-- This example requires Tailwind CSS v2.0+ -->
 <div
   class="fixed z-10 inset-0 overflow-y-auto text-strange-black font-montserrat"
   aria-labelledby="modal-title"
@@ -116,6 +130,11 @@
           <div
             class="max-w-xl w-full h-90 mt-5 bg-strange-gray text-pale-white rounded-lg m-auto "
           >
+            <img
+              class="max-w-xl w-full h-90 mt-5 bg-strange-gray text-pale-white rounded-lg m-auto"
+              src={imageURL}
+              alt=""
+            />
             <span class="">photos</span>
           </div>
 
@@ -172,5 +191,5 @@
   </div>
 </div>
 {#if view}
-  <TourBook {tour} closeFunction={() => (view = false)} />
+  <TourBook book={emptyBook} {tour} closeFunction={() => (view = false)} />
 {/if}

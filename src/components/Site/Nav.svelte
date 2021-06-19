@@ -4,7 +4,7 @@
   let foo = ""
 </script>
 
-<nav class="fixed w-full z-50 bg-dark-gray text-pale-white">
+<nav class="fixed w-full z-40 bg-dark-gray text-pale-white">
   <div
     class="max-w-screen-xl m-auto flex flex-row relative items-center justify-between"
   >
@@ -68,10 +68,6 @@
     <div class="w-1/4 flex items-center justify-end mr-5 my-1.5 space-x-3">
       <Link to="admin/tours">
         <button class="w-10">admin</button>
-      </Link>
-
-      <Link to="test">
-        <button class="w-10">test</button>
       </Link>
 
       <Link to="faq">

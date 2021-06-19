@@ -1,5 +1,6 @@
 <script>
   import { getContext } from "svelte"
+
   export let tour
   export let closeFunction
 
@@ -7,8 +8,6 @@
 
   const app = getContext("firebase").getFirebase()
   const firestore = app.firestore()
-
-  let files
 
   let {
     id,
@@ -19,6 +18,7 @@
     hotel,
     hotelLink,
     iata,
+    imageURL,
     name,
     price,
     rating,
@@ -36,6 +36,7 @@
       hotel,
       hotelLink,
       iata,
+      imageURL,
       name,
       price,
       rating,
@@ -58,6 +59,7 @@
       hotel,
       hotelLink,
       iata,
+      imageURL,
       name,
       price,
       rating,
@@ -69,20 +71,9 @@
       .then(() => console.log("=== TourView: tour updated ", id))
       .catch((error) => console.error("=== TourView: tour NOT updated ", error))
   }
-
-  $: if (files) {
-    // Переменная `files` будет типа `FileList`, а не массивом:
-    // https://developer.mozilla.org/ru/docs/Web/API/FileList
-    console.log(files)
-
-    for (const file of files) {
-      console.log(`${file.name}: ${file.size} байт(а)`)
-    }
-  }
 </script>
 
 <div>
-  <!-- This example requires Tailwind CSS v2.0+ -->
   <div
     class="fixed z-10 inset-0 overflow-y-auto pt-10"
     aria-labelledby="modal-title"
@@ -95,6 +86,7 @@
       <div
         class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
         aria-hidden="true"
+        on:click={closeFunction}
       />
 
       <span
@@ -114,25 +106,6 @@
             >
               Изменить тур
             </h3>
-
-            <div class="mt-2 flex flex-col">
-              <label
-                for="Images"
-                class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
-                >Фото
-              </label>
-
-              <div class="flex flex-col">
-                <label for="TourAvatar">Загрузить фото:</label>
-                <input
-                  accept="image/png, image/jpeg"
-                  bind:files
-                  id="TourAvatar"
-                  name="tourAvatar"
-                  type="file"
-                />
-              </div>
-            </div>
 
             <div class="mt-2 flex flex-col">
               <label
@@ -238,6 +211,23 @@
 
             <div class="mt-2 flex flex-col">
               <label
+                for="ImageURL"
+                class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
+                >Ссылка на фото
+              </label>
+              <input
+                bind:value={imageURL}
+                type="text"
+                id="ImageURL,"
+                name="imageURL"
+                required
+                class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-strange-black dark:text-gray-400"
+                placeholder=""
+              />
+            </div>
+
+            <div class="mt-2 flex flex-col">
+              <label
                 for="Iata"
                 class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
                 >IATA-код
@@ -316,11 +306,11 @@
 
               <div class="flex flex-row space-x-5 justify-center text-lg">
                 <label>
-                  <input type="radio" bind:value={visa} />
-                  c визой
+                  <input type="radio" bind:group={visa} value={true} />
+                  с визой
                 </label>
                 <label>
-                  <input type="radio" bind:value={visa} />
+                  <input type="radio" bind:group={visa} value={false} />
                   без визы
                 </label>
               </div>
@@ -331,6 +321,7 @@
           {#if id === ""}
             <button
               on:click={addTour}
+              on:click={closeFunction}
               type="button"
               class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 active:bg-green-600 sm:ml-3 sm:w-auto sm:text-sm"
             >
@@ -339,6 +330,7 @@
           {:else}
             <button
               on:click={updateTour}
+              on:click={closeFunction}
               type="button"
               class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 active:bg-green-600 sm:ml-3 sm:w-auto sm:text-sm"
             >

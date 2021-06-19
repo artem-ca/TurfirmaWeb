@@ -1,13 +1,25 @@
 <script>
-  import { AdminNav, Application } from "../Admin";
+  import { Collection } from "sveltefire"
 
-  let showForm = false;
+  import {
+    AdminNav,
+    ApplicationView,
+    ApplicationCard,
+  } from "../../components/Admin"
+
+  let view = false
+
+  let emptyApplication = {
+    description: "",
+    email: "",
+    name: "",
+    phone: "",
+  }
 </script>
 
-<div class="pt-12">
+<div class="pt-12 min-h-screen">
   <AdminNav />
   <div class="sm:max-w-screen-xl m-auto px-10 pb-20">
-    <!-- This example requires Tailwind CSS v2.0+ -->
     <div class="flex flex-col">
       <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -21,32 +33,34 @@
                     scope="col"
                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Клиент
-                  </th>
-                  <th
-                    scope="col"
-                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Описание
-                  </th>
-                  <th
-                    scope="col"
-                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Дата
+                    Имя заказчика
                   </th>
 
-                  <th scope="col" class="relative px-6 py-3">
+                  <th
+                    scope="col"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Почта
+                  </th>
+
+                  <th
+                    scope="col"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Телефон
+                  </th>
+
+                  <th scope="col" class="relative px-6 py-3 justify-end ">
                     <span class="sr-only">Edit</span>
 
                     <button
-                      class="border border-strange-black hover:bg-gray-200 rounded p-2 mt-4"
-                      on:click={() => (view = true)}>Добавить тур</button
+                      class="border border-strange-black hover:bg-gray-200 rounded p-2 mt-4 "
+                      on:click={() => (view = true)}>Добавить заявку</button
                     >
 
                     {#if view}
-                      <TourView
-                        tour={emptyTour}
+                      <ApplicationView
+                        application={emptyApplication}
                         closeFunction={() => (view = false)}
                       />
                     {/if}
@@ -54,15 +68,14 @@
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
-                <Collection path={"Tours"} log let:data={tours}>
-                  {#each tours as tour}
-                    <TourCard {tour} />
-                    <!-- <div>{tour.name}</div> -->
+                <Collection path={"Applications"} log let:data={applications}>
+                  {#each applications as application}
+                    <ApplicationCard {application} />
                   {/each}
 
-                  <div slot="loading">Loading...</div>
+                  <div slot="loading">Загрузка данных...</div>
 
-                  <div slot="fallback">Unable to display comments...</div>
+                  <div slot="fallback">Ошибка: Доступ к данным не получен</div>
                 </Collection>
               </tbody>
             </table>

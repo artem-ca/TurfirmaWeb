@@ -2,6 +2,7 @@
   import { getContext, createEventDispatcher, onDestroy } from "svelte"
   import Success from "./Success.svelte"
 
+  export let application
   export let closeFunction
 
   const DEBUG = true
@@ -11,9 +12,8 @@
 
   let showModal = false
 
-  // let application = { description, email, names, phone }
-
-  // DEBUG && console.log(application)
+  let { id, description, email, name, phone } = application
+  DEBUG && console.log(application)
 
   function addApplication() {
     let applicationsRef = firestore.collection(`/Applications`)
@@ -22,61 +22,13 @@
       email,
       name,
       phone,
+      date,
     }
 
     applicationsRef
       .add(data)
       .then((docRef) => console.log("=== TourView: tour added ", docRef.id))
       .catch((error) => console.error("=== TourView: tour NOT added ", error))
-  }
-
-  const dispatch = createEventDispatcher()
-  const close = () => dispatch("close")
-
-  let modal
-
-  let files
-  let visa = true
-
-  const handle_keydown = (e) => {
-    if (e.key === "Escape") {
-      close()
-      return
-    }
-
-    if (e.key === "Tab") {
-      // trap focus
-      const nodes = modal.querySelectorAll("*")
-      const tabbable = Array.from(nodes).filter((n) => n.tabIndex >= 0)
-
-      let index = tabbable.indexOf(document.activeElement)
-      if (index === -1 && e.shiftKey) index = 0
-
-      index += tabbable.length + (e.shiftKey ? -1 : 1)
-      index %= tabbable.length
-
-      tabbable[index].focus()
-      e.preventDefault()
-    }
-  }
-
-  const previously_focused =
-    typeof document !== "undefined" && document.activeElement
-
-  if (previously_focused) {
-    onDestroy(() => {
-      previously_focused.focus()
-    })
-  }
-
-  $: if (files) {
-    // Переменная `files` будет типа `FileList`, а не массивом:
-    // https://developer.mozilla.org/ru/docs/Web/API/FileList
-    console.log(files)
-
-    for (const file of files) {
-      console.log(`${file.name}: ${file.size} байт(а)`)
-    }
   }
 </script>
 
@@ -128,6 +80,7 @@
                 required
                 class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
                 placeholder="Имя"
+                bind:value={name}
               />
             </div>
 
@@ -144,6 +97,7 @@
                 required
                 class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
                 placeholder="Электронная почта"
+                bind:value={email}
               />
             </div>
 
@@ -154,12 +108,14 @@
                 >Телефон
               </label>
               <input
-                type="text"
+                type="number"
+                maxlength="11"
                 id="Phone"
                 name="phone"
                 required
                 class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
                 placeholder="Телефон"
+                bind:value={phone}
               />
             </div>
 
@@ -171,6 +127,7 @@
               </label>
               <textarea
                 class=" bg-pale-white text-strange-gray border resize-y max-h-52 rounded-md"
+                bind:value={description}
               />
             </div>
           </div>

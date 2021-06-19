@@ -1,18 +1,16 @@
 <script>
   // @ts-nocheck
 
+  import { User, Doc, Collection, StorageRef } from "sveltefire"
   import { Link } from "svelte-routing"
   import { fade, fly, scale, slide } from "svelte/transition"
+
+  import "firebase/auth"
+  import firebase from "firebase/app"
 
   import { AdminNav, TourView } from "../Admin"
 
   let showForm = false
-
-  import firebase from "firebase/app"
-  // import firebaseConfig from ". firebase/config.json";
-
-  import { User, Doc, Collection } from "sveltefire"
-  import "firebase/auth"
 
   let query = (ref) => ref.orderBy("name")
   let query2 = (ref) => ref.orderBy("uid")

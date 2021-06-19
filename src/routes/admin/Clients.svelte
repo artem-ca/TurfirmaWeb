@@ -1,13 +1,14 @@
 <script>
-  import { AdminNav, ClientView, ClientCard } from "../../components/Admin"
   import { Collection } from "sveltefire"
+
+  import { AdminNav, ClientView, ClientCard } from "../../components/Admin"
+
+  let view = false
 
   let emptyClient = {
     id: "",
     name: "",
   }
-
-  let view = false
 </script>
 
 <div class="pt-12">

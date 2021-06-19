@@ -3,37 +3,32 @@
   // npm i marked
   // import marked from 'marked'
   // {@html marked(description)}
-  import { TourView } from "./";
+  import { getContext } from "svelte"
 
-  export let tour;
+  import { TourView } from "./"
 
-  import { getContext } from "svelte";
-  const app = getContext("firebase").getFirebase();
-  const firestore = app.firestore();
+  export let tour
+
+  const app = getContext("firebase").getFirebase()
+  const firestore = app.firestore()
 
   function deleteTour() {
-    let tourRef = firestore.doc(`/Tours/${tour.id}`);
+    let tourRef = firestore.doc(`/Tours/${tour.id}`)
 
     tourRef
       .delete()
       .then(() => console.log("=== TourView: tour deleted "))
-      .catch((error) =>
-        console.error("=== TourView: tour NOT deleted ", error)
-      );
+      .catch((error) => console.error("=== TourView: tour NOT deleted ", error))
   }
 
-  let view = false;
+  let view = false
 </script>
 
 <tr>
   <td class="px-6 py-4 whitespace-nowrap">
     <div class="flex items-center">
       <div class="flex-shrink-0 h-10 w-10">
-        <img
-          class="h-10 w-10 rounded-full"
-          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
-          alt=""
-        />
+        <img class="h-10 w-10 rounded-full" src={tour.imageURL} alt="" />
       </div>
       <div class="ml-4">
         <div class="text-sm font-medium text-gray-900">
@@ -90,7 +85,7 @@
       href="#"
       class="text-indigo-600 hover:text-indigo-900"
       on:click={() => {
-        view = true;
+        view = true
       }}>Изменить</a
     >&nbsp;
     <a

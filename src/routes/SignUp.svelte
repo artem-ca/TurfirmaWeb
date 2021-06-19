@@ -1,61 +1,62 @@
 <script>
-  let background = "img/mayak_zakat.jpg";
+  let background = "img/mayak_zakat.jpg"
 
-  import { User } from "sveltefire";
-  import "firebase/auth";
-  import "firebase/firestore";
-  import { getContext } from "svelte";
-  import { userData } from "../components/store";
-  import { navigate, Link } from "svelte-routing";
+  import { User } from "sveltefire"
+  import "firebase/auth"
+  import "firebase/firestore"
+  import { getContext } from "svelte"
+  import { userData } from "../components/store"
+  import { navigate, Link } from "svelte-routing"
 
-  const app = getContext("firebase").getFirebase();
-  const firestore = app.firestore();
-  const auth = app.auth();
+  const app = getContext("firebase").getFirebase()
+  const firestore = app.firestore()
+  const auth = app.auth()
 
-  let email, password, homeButton;
+  let email, password, homeButton
+  let yes = false
 
-  const DEBUG = true;
+  const DEBUG = true
 
   const storeUser = (event) => {
-    const user = event.detail.user;
+    const user = event.detail.user
 
-    console.log("Юзер авторизовался", user);
+    console.log("Юзер авторизовался", user)
     if (user && !user.lastLoginAt) {
       // user authorized and info came from firebase server
-      const { uid, email } = user;
+      const { uid, email } = user
 
-      let userRef = firestore.doc(`/Users/${uid}`);
+      let userRef = firestore.doc(`/Users/${uid}`)
       userRef.get().then((doc) => {
-        DEBUG && console.log("DEBUG: requesting user data");
+        DEBUG && console.log("DEBUG: requesting user data")
 
         if (doc && doc.exists) {
           // user is old
-          let data = doc.data();
-          userData.set(data);
+          let data = doc.data()
+          userData.set(data)
 
-          DEBUG && console.log("user is old", $userData);
-          homeButton.click();
+          DEBUG && console.log("user is old", $userData)
+          homeButton.click()
           // navigate('/', { replace: true })
         } else {
           // user is new
-          let data = { uid, email };
+          let data = { uid, email }
 
           userRef.set(data).then(() => {
-            userData.set(data);
+            userData.set(data)
 
-            DEBUG && console.log("user is new", $userData);
-            homeButton.click();
+            DEBUG && console.log("user is new", $userData)
+            homeButton.click()
             // navigate('/', { replace: true })
-          });
+          })
         }
-      });
+      })
     }
-  };
+  }
 
   function createUser(event) {
     // TODO SIGNUP проверить заполненность полей и совпадение паролей
-    event.preventDefault();
-    auth.createUserWithEmailAndPassword(email, password);
+    event.preventDefault()
+    auth.createUserWithEmailAndPassword(email, password)
   }
 </script>
 
@@ -182,7 +183,7 @@
                     />
                   </div>
                   <div class="inline-flex mb-10">
-                    <input class="mr-4" type="checkbox" />
+                    <input class="mr-4" type="checkbox" bind:checked={yes} />
                     <p class="-mt-2 text-sm text-pale-white">
                       Регистрируясь, Вы соглашаетесь с нашими <a
                         class="text-gray-400"
@@ -193,6 +194,7 @@
                   </div>
                   <button
                     on:click={createUser}
+                    disabled={!yes}
                     class="py-4 w-full bg-red-600 hover:bg-red-500 active:bg-red-400 text-strange-black font-bold rounded-2xl transition duration-200"
                     >Начнем</button
                   >

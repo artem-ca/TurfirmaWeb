@@ -1,25 +1,30 @@
 <script>
-  import { AdminNav, TourView, TourCard } from "../../components/Admin"
-
   import { Collection } from "sveltefire"
+
+  import { AdminNav, TourView, TourCard, Private } from "../../components/Admin"
 
   let emptyTour = {
     id: "",
-    name: "",
-    country: "",
-    city: "",
-    visa: "",
     area: "",
+    city: "",
+    country: "",
+    description: "",
     hotel: "",
+    hotelLink: "",
+    iata: "",
+    name: "",
+    price: 1000,
+    rating: 5,
+    visa: false,
   }
 
   let view = false
 </script>
 
 <div class="pt-12">
+  <!-- <Private /> -->
   <AdminNav />
   <div class="sm:max-w-screen-xl m-auto px-10 pb-20 ">
-    <!-- This example requires Tailwind CSS v2.0+ -->
     <div class="flex flex-col">
       <div class="-my-2 overflow-x-auto  sm:-mx-6 lg:-mx-8">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">

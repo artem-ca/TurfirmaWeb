@@ -1,8 +1,12 @@
 <script>
+  import { dictionaries, ticketPrice } from "../store.js"
+  import { orderFlight } from "./amadeus.js"
+
   export let flight
 
-  import { dictionaries } from "../store.js"
-  import { orderFlight } from "./amadeus.js"
+  const rate = 87.5
+
+  $ticketPrice = flight.price.total * rate
 
   // const { departureDate, destination, origin, price, returnDate, passangers } =
   //   flight
@@ -98,7 +102,7 @@
       text-xl font-display
       bg-red-600 hover:bg-red-500 active:bg-red-400"
     >
-      € {flight.price.total}
+      ₽ {flight.price.total * rate}
     </button>
   </div>
 </div>

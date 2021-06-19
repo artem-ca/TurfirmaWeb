@@ -1,15 +1,18 @@
 <script>
-  import { getContext } from "svelte";
-  export let tour;
-  export let closeFunction;
+  import { getContext } from "svelte"
+  export let tour
+  export let book
+  export let closeFunction
 
-  const DEBUG = true;
+  const DEBUG = true
 
-  const app = getContext("firebase").getFirebase();
-  const firestore = app.firestore();
+  const app = getContext("firebase").getFirebase()
+  const firestore = app.firestore()
+
+  let view = false
+  let yes = false
 
   let {
-    uid,
     id,
     email,
     name,
@@ -20,17 +23,12 @@
     passport,
     interPassport,
     birthday,
-    regDate,
-  } = tour;
-  DEBUG && console.log(tour);
+  } = book
+  DEBUG && console.log(book)
 
-  let files;
-
-  function addClient() {
-    let clientsRef = firestore.collection(`/Users`);
+  function addBook() {
+    let bookingRef = firestore.collection(`/Booking`)
     let data = {
-      uid,
-      id,
       email,
       name,
       lastName,
@@ -40,53 +38,18 @@
       passport,
       interPassport,
       birthday,
-      regDate,
-    };
+      tour,
+    }
 
-    clientsRef
+    bookingRef
       .add(data)
       .then((docRef) => console.log("=== ClientView: client added ", docRef.id))
       .catch((error) =>
         console.error("=== ClientView: client NOT added ", error)
-      );
-  }
-  function updateClient() {
-    let clientRef = firestore.doc(`/Users/${id}`);
-    let data = {
-      uid,
-      id,
-      email,
-      name,
-      lastName,
-      middleName,
-      phone,
-      address,
-      passport,
-      interPassport,
-      birthday,
-      regDate,
-    };
-
-    clientRef
-      .update(data)
-      .then(() => console.log("=== ClientView: client added ", id))
-      .catch((error) =>
-        console.error("=== ClientView: client NOT added ", error)
-      );
-  }
-
-  $: if (files) {
-    // Переменная `files` будет типа `FileList`, а не массивом:
-    // https://developer.mozilla.org/ru/docs/Web/API/FileList
-    console.log(files);
-
-    for (const file of files) {
-      console.log(`${file.name}: ${file.size} байт(а)`);
-    }
+      )
   }
 </script>
 
-<!-- This example requires Tailwind CSS v2.0+ -->
 <div
   class="fixed z-10 inset-0 overflow-y-auto"
   aria-labelledby="modal-title"
@@ -99,16 +62,18 @@
     <div
       class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
       aria-hidden="true"
+      on:click={closeFunction}
     />
 
-    <!-- This element is to trick the browser into centering the modal contents. -->
     <span
       class="hidden sm:inline-block sm:align-middle sm:h-screen"
       aria-hidden="true">&#8203;</span
     >
 
     <div
-      class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+      class="inline-block align-bottom bg-pale-white rounded-lg text-left 
+      overflow-hidden shadow-2xl transform transition-all 
+      sm:my-8 sm:align-middle lg:max-w-4xl md:max-w-2xl sm:max-w-xl sm:w-full"
     >
       <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
         <div class="sm:flex sm:items-start" />
@@ -117,149 +82,169 @@
             class="text-xl leading-6 font-bold text-gray-900 text-center pb-2"
             id="modal-title"
           >
-            Изменить информацию о клиенте
+            Бронь тура: {tour.name}
           </h3>
 
-          <div class="mt-2 flex flex-col">
-            <label
-              for="Images"
-              class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
-              >Фото
-            </label>
-
-            <div class="flex flex-col">
-              <label for="HotelAvatar">Загрузить аватар:</label>
+          <div class="grid grid-cols-2 space-x-2">
+            <div class="mt-2 flex flex-col pl-2">
+              <label
+                for="LastName"
+                class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
+                >Фамилия
+              </label>
               <input
-                accept="image/png, image/jpeg"
-                bind:files
-                id="HotelAvatar"
-                name="hotelAvatar"
-                type="file"
+                type="text"
+                id="LastName"
+                name="lastName"
+                required
+                class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
+                placeholder="Сидоров"
+                bind:value={lastName}
               />
             </div>
-          </div>
 
-          <div class="mt-2 flex flex-col">
-            <label
-              for="LastName"
-              class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
-              >Фамилия
-            </label>
-            <input
-              bind:value={lastName}
-              type="text"
-              id="LastName"
-              name="lastName"
-              required
-              class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
-              placeholder="Фамилия"
-            />
-          </div>
+            <div class="mt-2 flex flex-col">
+              <label
+                for="Email"
+                class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
+                >Почта
+              </label>
+              <input
+                type="text"
+                id="Email"
+                name="email"
+                required
+                class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
+                placeholder="Электронная почта"
+                bind:value={email}
+              />
+            </div>
 
-          <div class="mt-2 flex flex-col">
-            <label
-              for="Name"
-              class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
-              >Имя
-            </label>
-            <input
-              bind:value={name}
-              type="text"
-              id="Name"
-              name="name"
-              required
-              class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
-              placeholder="Имя"
-            />
-          </div>
+            <div class="mt-2 flex flex-col">
+              <label
+                for="Name"
+                class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
+                >Имя
+              </label>
+              <input
+                type="text"
+                id="Name"
+                name="name"
+                required
+                class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
+                placeholder="Весемир"
+                bind:value={name}
+              />
+            </div>
 
-          <div class="mt-2 flex flex-col">
-            <label
-              for="MiddleName"
-              class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
-              >Отчество
-            </label>
-            <input
-              bind:value={middleName}
-              type="text"
-              id="MiddleName"
-              name="MiddleName"
-              required
-              class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
-              placeholder="Отчество"
-            />
-          </div>
+            <div class="mt-2 flex flex-col">
+              <label
+                for="Phone"
+                class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
+                >Телефон
+              </label>
+              <input
+                type="text"
+                id="Phone"
+                name="phone"
+                required
+                class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
+                placeholder="89998887766"
+                bind:value={phone}
+              />
+            </div>
 
-          <div class="mt-2 flex flex-col">
-            <label
-              for="Email"
-              class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
-              >Почта
-            </label>
-            <input
-              bind:value={email}
-              type="text"
-              id="Email"
-              name="email"
-              required
-              class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
-              placeholder="Электронная почта"
-            />
-          </div>
+            <div class="mt-2 flex flex-col">
+              <label
+                for="MiddleName"
+                class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
+                >Отчество
+              </label>
+              <input
+                type="text"
+                id="MiddleName"
+                name="MiddleName"
+                required
+                class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
+                placeholder="Андреевич"
+                bind:value={middleName}
+              />
+            </div>
 
-          <div class="mt-2 flex flex-col">
-            <label
-              for="Phone"
-              class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
-              >Телефон
-            </label>
-            <input
-              bind:value={phone}
-              type="text"
-              id="Phone"
-              name="phone"
-              required
-              class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
-              placeholder="Телефон"
-            />
-          </div>
+            <div class="mt-2 flex flex-col">
+              <label
+                for="Address"
+                class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
+                >Адрес
+              </label>
+              <input
+                type="text"
+                id="Address"
+                name="address"
+                required
+                class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
+                placeholder="г. Екатеринбург, ул. Первомаяская, д.73"
+                bind:value={address}
+              />
+            </div>
 
-          <div class="mt-2 flex flex-col">
-            <label
-              for="Address"
-              class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
-              >Адрес
-            </label>
-            <input
-              bind:value={address}
-              type="text"
-              id="Address"
-              name="address"
-              required
-              class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
-              placeholder="Отчество"
-            />
+            <div class="mt-2 flex flex-col">
+              <label
+                for="Address"
+                class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
+                >Паспорт
+              </label>
+              <input
+                type="number"
+                maxlength="10"
+                id="Passport"
+                name="passport"
+                required
+                class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
+                placeholder="4507691152"
+                bind:value={passport}
+              />
+            </div>
+
+            <div class="mt-2 flex flex-col">
+              <label
+                for="Address"
+                class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
+                >Загранпаспорт
+              </label>
+              <input
+                type="number"
+                maxlength="9"
+                id="InterPassport"
+                name="interPassport"
+                required
+                class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
+                placeholder="520022196"
+                bind:value={interPassport}
+              />
+            </div>
+
+            <div class="mt-2 flex flex-col">
+              <label class="text-xl self-center text-center mt-5 ">
+                <input type="checkbox" bind:checked={yes} />
+                Нажимая, вы соглашаетесь на обработку персональных данных
+              </label>
+            </div>
           </div>
         </div>
       </div>
-      <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-        {#if id === ""}
-          <button
-            on:click={addClient}
-            type="button"
-            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 active:bg-green-600 sm:ml-3 sm:w-auto sm:text-sm"
-          >
-            Добавить
-          </button>
-        {:else}
-          <button
-            on:click={updateClient}
-            type="button"
-            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 active:bg-green-600 sm:ml-3 sm:w-auto sm:text-sm"
-          >
-            Сохранить
-          </button>
-        {/if}
+      <div
+        class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse justify-center"
+      >
+        <button
+          on:click={addBook}
+          on:click={closeFunction}
+          disabled={!yes}
+          type="button"
+          class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 active:bg-green-600 sm:ml-3 sm:w-auto sm:text-sm"
+        >
+          Забронировать
+        </button>
 
         <button
           on:click={closeFunction}

@@ -6,7 +6,13 @@
   import { Tour } from "./"
   import { Flight } from "../Tickets"
 
-  import { tourists, passengers, nights, flights } from "../store.js"
+  import {
+    tourists,
+    passengers,
+    nights,
+    flights,
+    ticketPrice,
+  } from "../store.js"
 
   export let tour
   // export let closeFunction
@@ -42,8 +48,8 @@
   on:click={() => (view = true)}
 >
   <div
-    class="p-22 h-55 mt-1 absolute rounded-xl bg-local bg-cover shadow-xl"
-    style="background-image: url('{background}')"
+    class="p-22 h-55 mt-1 absolute rounded-xl bg-local bg-cover shadow-xl space-x-reverse"
+    style="background-image: url('{tour.imageURL}')"
   />
   <!-- 
   <StorageRef {path} let:downloadURL let:ref={path} meta let:metadata>

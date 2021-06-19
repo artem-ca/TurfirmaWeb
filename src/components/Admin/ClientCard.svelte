@@ -1,13 +1,10 @@
 <script>
-  // TODO markdown description
-  // npm i marked
-  // import marked from 'marked'
-  // {@html marked(description)}
+  import { getContext } from "svelte"
+
   import { ClientView } from "./"
 
   export let client
 
-  import { getContext } from "svelte"
   const app = getContext("firebase").getFirebase()
   const firestore = app.firestore()
 
@@ -31,7 +28,7 @@
       <div class="flex-shrink-0 h-10 w-10">
         <img
           class="h-10 w-10 rounded-full"
-          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
+          src="https://img2.freepng.ru/20190221/gw/kisspng-computer-icons-user-profile-clip-art-portable-netw-c-svg-png-icon-free-download-389-86-onlineweb-5c6f7efd8fecb7.6156919015508108775895.jpg"
           alt=""
         />
       </div>
